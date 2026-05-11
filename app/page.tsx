@@ -14,9 +14,10 @@ export default function HomePage() {
           How should teaching respond when attention is shaped by algorithms?
         </h1>
         <p className="text-lg text-stone-500 leading-relaxed max-w-xl mb-10">
-          A collection of research-driven classroom tools built to work with — and
-          against — the logic of the feed. Each tool is grounded in an action
-          research project comparing two instructional models.
+          Research-driven classroom tools built around one question: how should
+          teaching respond when students encounter information through feeds,
+          recommendations, and AI-shaped discovery? Each tool comes from testing
+          two instructional approaches in the same class.
         </p>
         <div className="flex items-center gap-6">
           <Link

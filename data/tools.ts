@@ -21,7 +21,7 @@ export const tools: Tool[] = [
       'A step-by-step tool that guides students through sustained looking before they reach for meaning. Prompts slow the process down: what repeats, what shifts, what is ambiguous. Students build an evidence base before they make any claims.',
     researchModel: 'against-feed',
     researchNote:
-      'Supports archive-first teaching by making visual attention deliberate and explicit — resisting the feed impulse to move on before comprehension lands.',
+      'Supports archive-first teaching by making visual attention deliberate and explicit. Resists the feed impulse to move on before comprehension has landed.',
     status: 'live',
   },
   {
@@ -52,7 +52,7 @@ export const tools: Tool[] = [
     name: 'JPEG Degradation',
     tagline: 'Watch an image lose data every time it is saved',
     description:
-      'A demonstration tool that makes lossy compression visible. Each time a JPEG is re-saved, it sheds information. This tool runs that process in sequence so students can watch image quality degrade — a provocation about what platforms do to images as they travel.',
+      'A demonstration tool that makes lossy compression visible. Each time a JPEG is re-saved, it loses data. Run the sequence and watch the image degrade. A provocation for a lesson on what platforms do to images in circulation.',
     researchModel: 'with-feed',
     researchNote:
       'Opens a lesson on algorithmic image culture: how images are compressed, optimised, and altered in circulation before they reach anyone\'s feed.',

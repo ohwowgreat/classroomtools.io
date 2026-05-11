@@ -34,17 +34,17 @@ export default function ResearchPage() {
       <section className="mb-12 space-y-4 text-stone-700 leading-relaxed">
         <p>
           Students today encounter most information through ranked, adjacent,
-          algorithmically curated surfaces — feeds, recommendation queues, search
+          algorithmically curated surfaces: feeds, recommendation queues, search
           results. These surfaces share a logic: novelty over return, strong
-          signals of what comes next, compression of context, and rapid
+          signals of what comes next, compression of context, rapid
           connection-making without full explanation.
         </p>
         <p>
           This project asks whether classroom teaching should work with that logic
-          or against it — and what each choice costs. Rather than treating the
-          feed as an obstacle to be overcome, it takes the feed&apos;s structure
-          seriously as a set of instructional techniques that can be adapted,
-          rejected, or combined.
+          or against it, and what each choice costs. Rather than treating the
+          feed as a problem to solve, it takes the feed&apos;s structure seriously
+          as a set of instructional techniques that can be adapted, rejected, or
+          combined.
         </p>
         <p>
           The research is an action research study comparing two instructional
@@ -142,8 +142,8 @@ export default function ResearchPage() {
         </h2>
         <p className="text-sm text-stone-600 leading-relaxed">
           Proposal accepted. Research design in revision following committee
-          feedback. One teacher, one A-Level course, one bounded unit — with the
-          same learning goals and assessment lenses across both cycles.
+          feedback. One teacher, one A-Level course, one bounded unit. Same
+          learning goals and assessment lenses across both cycles.
         </p>
       </section>
 
