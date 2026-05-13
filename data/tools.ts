@@ -50,6 +50,39 @@ export const tools: Tool[] = [
     status: 'live',
   },
   {
+    slug: 'attention-heatmap',
+    name: 'Attention Heatmap',
+    tagline: 'Make looking visible across a whole class',
+    description:
+      'Students mark where their eye goes first, second, and third on an image. Class results build up visually, making viewing patterns visible and giving everyone something concrete to discuss.',
+    researchModel: 'both',
+    researchNote:
+      'Surfaces the assumptions students bring to images before teaching begins. Useful in either model.',
+    status: 'live',
+  },
+  {
+    slug: 'lockdown-browser',
+    name: 'Lockdown Browser',
+    tagline: 'Fullscreen exams on your local network, no internet required',
+    description:
+      'A cross-platform desktop app built with Electron. Teachers create exams and host them locally. Students open the app, enter a code, and get locked into a fullscreen exam — no tab-switching, no shortcuts, no escape. Everything runs on your local network.',
+    researchModel: 'both',
+    researchNote:
+      'Assessment infrastructure that keeps the exam environment controlled without relying on external services.',
+    status: 'coming-soon',
+  },
+  {
+    slug: 'invigilation-clock',
+    name: 'Invigilation Clock',
+    tagline: 'Visible timing and pacing for in-room exams',
+    description:
+      'A display tool for managing exam time in the room. Shows remaining time, marks key intervals, and gives students and the teacher a shared reference throughout the assessment.',
+    researchModel: 'both',
+    researchNote:
+      'Classroom infrastructure for assessments.',
+    status: 'coming-soon',
+  },
+  {
     slug: 'jpeg-degradation',
     name: 'JPEG Degradation',
     tagline: 'Watch an image lose data every time it is saved',
