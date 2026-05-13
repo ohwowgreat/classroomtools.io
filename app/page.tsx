@@ -7,36 +7,36 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pt-20 pb-16 border-b border-stone-200">
-        <p className="font-mono text-xs text-stone-400 tracking-widest uppercase mb-6">
-          Teaching After the Feed
-        </p>
         <h1 className="text-4xl sm:text-5xl font-semibold text-stone-900 leading-tight tracking-tight max-w-2xl mb-6">
-          How should teaching respond when attention is shaped by algorithms?
+          Research-driven tools for the art classroom.
         </h1>
         <p className="text-lg text-stone-500 leading-relaxed max-w-xl mb-10">
-          Research-driven classroom tools built around one question: how should
-          teaching respond when students encounter information through feeds,
-          recommendations, and AI-shaped discovery? Each tool comes from testing
-          two instructional approaches in the same class.
+          Each tool comes from testing two instructional approaches in the same
+          class. The research behind them is here if you want it.
         </p>
-        <div className="flex items-center gap-6">
-          <Link
-            href="/research"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
-          >
-            Read the research
-          </Link>
-          <Link
-            href="#tools"
-            className="text-sm text-stone-500 hover:text-stone-900 transition-colors"
-          >
-            See the tools →
-          </Link>
+        <Link
+          href="/research"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
+        >
+          Read the research
+        </Link>
+      </section>
+
+      {/* Tools grid */}
+      <section id="tools" className="mx-auto max-w-5xl px-6 py-16 border-b border-stone-200">
+        <div className="flex items-baseline justify-between mb-8">
+          <h2 className="text-2xl font-semibold text-stone-900">Tools</h2>
+          <p className="text-sm text-stone-400">{tools.filter(t => t.status === 'live').length} live · more coming</p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {tools.map((tool) => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
         </div>
       </section>
 
       {/* Research models explainer */}
-      <section className="mx-auto max-w-5xl px-6 py-12 border-b border-stone-200">
+      <section className="mx-auto max-w-5xl px-6 py-12">
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="bg-feed-50 border border-feed-100 rounded-lg p-5">
             <p className="text-xs font-semibold text-feed-700 uppercase tracking-wider mb-2">
@@ -58,19 +58,6 @@ export default function HomePage() {
               accumulation.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Tools grid */}
-      <section id="tools" className="mx-auto max-w-5xl px-6 py-16">
-        <div className="flex items-baseline justify-between mb-8">
-          <h2 className="text-2xl font-semibold text-stone-900">Tools</h2>
-          <p className="text-sm text-stone-400">{tools.filter(t => t.status === 'live').length} live · more coming</p>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-5">
-          {tools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} />
-          ))}
         </div>
       </section>
     </>
