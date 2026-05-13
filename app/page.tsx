@@ -27,40 +27,27 @@ export default function HomePage() {
             <ToolCard key={tool.slug} tool={tool} />
           ))}
         </div>
-        <div className="mt-10">
-          <Link
-            href="/research"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
-          >
-            Read the research
-          </Link>
-        </div>
       </section>
 
-      {/* Research models explainer */}
-      <section className="mx-auto max-w-5xl px-6 py-12">
-        <div className="grid sm:grid-cols-2 gap-6">
-          <div className="bg-feed-50 border border-feed-100 rounded-lg p-5">
-            <p className="text-xs font-semibold text-feed-700 uppercase tracking-wider mb-2">
-              Teaching with the feed
-            </p>
-            <p className="text-sm text-stone-700 leading-relaxed">
-              Teacher-curated adjacency, pattern recognition before explanation,
-              strong signals of what comes next. Borrows the feed&apos;s structure
-              without handing control to a platform.
-            </p>
-          </div>
-          <div className="bg-archive-50 border border-archive-100 rounded-lg p-5">
-            <p className="text-xs font-semibold text-archive-700 uppercase tracking-wider mb-2">
-              Teaching against the feed
-            </p>
-            <p className="text-sm text-stone-700 leading-relaxed">
-              Archive-first structure, slow revisiting, explicit pathways, memory-
-              oriented learning. Reduces novelty in favour of return, reuse, and
-              accumulation.
-            </p>
-          </div>
-        </div>
+      {/* Research */}
+      <section className="mx-auto max-w-5xl px-6 py-16">
+        <p className="font-mono text-xs text-stone-400 tracking-widest uppercase mb-4">Research</p>
+        <h2 className="text-2xl font-semibold text-stone-900 max-w-xl mb-4">
+          How should teaching respond when attention is shaped by algorithms?
+        </h2>
+        <p className="text-base text-stone-500 leading-relaxed max-w-xl mb-8">
+          Students today encounter most information through ranked, adjacent,
+          algorithmically curated surfaces. This project asks whether classroom
+          teaching should work with that logic or against it — and what each
+          choice costs. It is an action research study comparing two instructional
+          models across a single course and class.
+        </p>
+        <Link
+          href="/research"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
+        >
+          Read the research
+        </Link>
       </section>
     </>
   )
