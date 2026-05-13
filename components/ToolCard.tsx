@@ -1,12 +1,5 @@
 import Link from 'next/link'
 import type { Tool } from '@/data/tools'
-import { researchModelLabel } from '@/data/tools'
-
-const tagStyles = {
-  'with-feed': 'bg-feed-100 text-feed-700',
-  'against-feed': 'bg-archive-100 text-archive-700',
-  both: 'bg-stone-100 text-stone-600',
-}
 
 export default function ToolCard({ tool }: { tool: Tool }) {
   const href = tool.externalUrl ?? `/tools/${tool.slug}`
@@ -30,25 +23,15 @@ export default function ToolCard({ tool }: { tool: Tool }) {
         {tool.description}
       </p>
 
-      <div className="space-y-3">
-        <span
-          className={`inline-block text-xs font-medium rounded-full px-2.5 py-1 ${tagStyles[tool.researchModel]}`}
-        >
-          {researchModelLabel[tool.researchModel]}
-        </span>
-
-        <div>
-          <Link
-            href={href}
-            target={isExternal ? '_blank' : undefined}
-            rel={isExternal ? 'noopener noreferrer' : undefined}
-            className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 hover:text-stone-600 transition-colors group-hover:gap-2"
-          >
-            {isExternal ? 'Open tool' : 'View tool'}
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-      </div>
+      <Link
+        href={href}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 hover:text-stone-600 transition-colors group-hover:gap-2"
+      >
+        {isExternal ? 'Open tool' : 'View tool'}
+        <span aria-hidden="true">→</span>
+      </Link>
     </article>
   )
 }
