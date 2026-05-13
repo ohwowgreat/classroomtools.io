@@ -8,18 +8,12 @@ export default function HomePage() {
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pt-20 pb-16 border-b border-stone-200">
         <h1 className="text-4xl sm:text-5xl font-semibold text-stone-900 leading-tight tracking-tight max-w-2xl mb-6">
-          Research-driven tools for the art classroom.
+          Research-driven tools for the classroom.
         </h1>
-        <p className="text-lg text-stone-500 leading-relaxed max-w-xl mb-10">
+        <p className="text-lg text-stone-500 leading-relaxed max-w-xl">
           Each tool comes from testing two instructional approaches in the same
           class. The research behind them is here if you want it.
         </p>
-        <Link
-          href="/research"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
-        >
-          Read the research
-        </Link>
       </section>
 
       {/* Tools grid */}
@@ -32,6 +26,14 @@ export default function HomePage() {
           {tools.map((tool) => (
             <ToolCard key={tool.slug} tool={tool} />
           ))}
+        </div>
+        <div className="mt-10">
+          <Link
+            href="/research"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-4 py-2 hover:bg-stone-900 hover:text-stone-50 transition-colors"
+          >
+            Read the research
+          </Link>
         </div>
       </section>
 
