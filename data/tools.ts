@@ -22,6 +22,7 @@ export const tools: Tool[] = [
     researchModel: 'against-feed',
     researchNote:
       'Supports archive-first teaching by making visual attention deliberate and explicit. Resists the feed impulse to move on before comprehension has landed.',
+    externalUrl: 'https://close-reader.dogan-arslanoglu.workers.dev/',
     status: 'live',
   },
   {
@@ -33,18 +34,19 @@ export const tools: Tool[] = [
     researchModel: 'with-feed',
     researchNote:
       'The primary tool for feed-like discovery: juxtaposition and adjacency generate pattern recognition before full context is given.',
+    externalUrl: 'https://constellation-board-six.vercel.app/',
     status: 'live',
   },
   {
-    slug: 'open-archive',
-    name: 'Open Archive',
+    slug: 'curatewith-art',
+    name: 'Curatewith.art',
     tagline: 'A class-built, revisitable image bank',
     description:
       'A shared archive that the class builds and returns to across a unit or course. Students add images, annotate connections, and revisit earlier entries as their thinking develops. The archive grows with the class and becomes a cumulative reference.',
     researchModel: 'against-feed',
     researchNote:
       'The core tool for archive-first teaching: stable, shared, memory-oriented. The class returns to the same bank rather than always encountering the new.',
-    externalUrl: 'https://curatewith.art/openarchive',
+    externalUrl: 'https://curatewith.art',
     status: 'live',
   },
   {
