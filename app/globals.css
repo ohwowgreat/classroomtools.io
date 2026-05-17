@@ -10,6 +10,6 @@
   }
 
   body {
-    @apply bg-stone-50 text-stone-900;
+    @apply bg-white text-stone-900;
   }
 }
