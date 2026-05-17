@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tool = tools.find((t) => t.slug === slug)
   if (!tool) return {}
   return {
-    title: `${tool.name} — classroomtools.io`,
+    title: `${tool.name} | classroomtools.io`,
     description: tool.description,
   }
 }

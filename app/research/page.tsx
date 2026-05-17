@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Research — classroomtools.io',
+  title: 'Research | classroomtools.io',
   description:
     'Teaching After the Feed: a framework for learning in algorithmic culture. An action research project comparing feed-like and archive-first instructional approaches.',
 }

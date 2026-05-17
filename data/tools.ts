@@ -65,7 +65,7 @@ export const tools: Tool[] = [
     name: 'Lockdown Browser',
     tagline: 'Fullscreen exams on your local network, no internet required',
     description:
-      'A cross-platform desktop app built with Electron. Teachers create exams and host them locally. Students open the app, enter a code, and get locked into a fullscreen exam — no tab-switching, no shortcuts, no escape. Everything runs on your local network.',
+      'A cross-platform desktop app built with Electron. Teachers create exams and host them locally. Students open the app, enter a code, and get locked into a fullscreen exam with no tab-switching, no shortcuts, no escape. Everything runs on your local network.',
     researchModel: 'both',
     researchNote:
       'Assessment infrastructure that keeps the exam environment controlled without relying on external services.',
