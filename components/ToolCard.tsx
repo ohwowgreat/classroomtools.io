@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import type { Tool, ResearchModel } from '@/data/tools'
-import { researchModelLabel } from '@/data/tools'
+import type { Tool, ResearchModel } from '@/lib/tools'
+import { researchModelLabel } from '@/lib/tools'
 
 const borderClass: Record<ResearchModel, string> = {
   'with-feed': 'border-feed-500',

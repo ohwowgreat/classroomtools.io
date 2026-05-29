@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { tools, researchModelLabel } from '@/data/tools'
+import { getTools, researchModelLabel } from '@/lib/tools'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export function generateStaticParams() {
-  return tools.map((tool) => ({ slug: tool.slug }))
+  return getTools().map((tool) => ({ slug: tool.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const tool = tools.find((t) => t.slug === slug)
+  const tool = getTools().find((t) => t.slug === slug)
   if (!tool) return {}
   return {
     title: `${tool.name} | classroomtools.io`,
@@ -29,7 +29,7 @@ const tagStyles = {
 
 export default async function ToolPage({ params }: Props) {
   const { slug } = await params
-  const tool = tools.find((t) => t.slug === slug)
+  const tool = getTools().find((t) => t.slug === slug)
   if (!tool) notFound()
 
   return (
