@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import ToolCard from '@/components/ToolCard'
-import { tools } from '@/data/tools'
+import { getTools } from '@/lib/tools'
 
 export default function HomePage() {
+  const tools = getTools()
   const liveCount = tools.filter(t => t.status === 'live').length
 
   return (
