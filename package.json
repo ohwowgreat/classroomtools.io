@@ -3,31 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next dev",
-    "cf:build": "opennextjs-cloudflare build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "deploy:cf": "next build && wrangler pages deploy out --project-name=classroomtools-io",
+    "deploy:oss": "next build && node scripts/oss-deploy.mjs"
   },
   "dependencies": {
-    "@keystatic/core": "^0.5.50",
-    "@keystatic/next": "^5.0.4",
-    "@types/js-yaml": "^4.0.9",
-    "js-yaml": "^4.1.1",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.19.11",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "ali-oss": "^6.23.0",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^17.4.2",
+    "mime-types": "^3.0.2",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.15",
     "typescript": "^5",

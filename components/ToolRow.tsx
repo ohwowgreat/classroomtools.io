@@ -1,12 +1,5 @@
 import Link from 'next/link'
-import type { Tool, ResearchModel } from '@/lib/tools'
-import { researchModelLabel } from '@/lib/tools'
-
-const modelTag: Record<ResearchModel, string> = {
-  'with-feed': 'text-feed-600 bg-feed-50',
-  'against-feed': 'text-archive-600 bg-archive-50',
-  both: 'text-stone-500 bg-stone-100',
-}
+import type { Tool } from '@/data/tools'
 
 interface Props {
   tool: Tool
@@ -14,15 +7,12 @@ interface Props {
 }
 
 export default function ToolRow({ tool, index }: Props) {
-  const href = tool.externalUrl ?? `/tools/${tool.slug}`
-  const isExternal = !!tool.externalUrl
+  const href = `/${tool.slug}`
 
   return (
     <article className="group border-t border-stone-200 last:border-b">
       <Link
         href={href}
-        target={isExternal ? '_blank' : undefined}
-        rel={isExternal ? 'noopener noreferrer' : undefined}
         className="flex items-start gap-6 py-7 px-1 hover:bg-stone-50/70 transition-colors duration-200 sm:items-center"
       >
         <span className="font-mono text-[10px] text-stone-300 tracking-widest shrink-0 pt-1 sm:pt-0 w-6">
@@ -34,12 +24,6 @@ export default function ToolRow({ tool, index }: Props) {
             {tool.name}
           </h3>
           <p className="text-sm text-stone-400 mt-1 leading-snug">{tool.tagline}</p>
-        </div>
-
-        <div className="hidden sm:block shrink-0">
-          <span className={`font-mono text-[9px] uppercase tracking-[0.1em] px-2.5 py-1.5 rounded ${modelTag[tool.researchModel]}`}>
-            {researchModelLabel[tool.researchModel]}
-          </span>
         </div>
 
         <div className="shrink-0 flex items-center gap-3">

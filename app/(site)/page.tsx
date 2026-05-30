@@ -1,89 +1,150 @@
+// Warm Swiss — Swiss grid discipline + warm-modern palette and feel
 import Link from 'next/link'
-import ToolRow from '@/components/ToolRow'
+import ToolEntry from '@/components/ToolEntry'
 import ScrollReveal from '@/components/ScrollReveal'
-import { getTools } from '@/lib/tools'
+import { getTools } from '@/data/tools'
 
 export default function HomePage() {
   const tools = getTools()
   const liveCount = tools.filter(t => t.status === 'live').length
+  const devCount = tools.length - liveCount
+
+  const stats: [string, string][] = [
+    ['Tools', String(tools.length).padStart(2, '0')],
+    ['Live', String(liveCount).padStart(2, '0')],
+    ['In development', String(devCount).padStart(2, '0')],
+    ['Research models', '02'],
+    ['Study period', '2024 —'],
+  ]
 
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20">
-        <div className="mx-auto max-w-6xl px-6 w-full">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-10">
+      <section className="flex flex-col justify-between pt-20" style={{ minHeight: '92dvh' }}>
+        <div className="mx-auto max-w-6xl px-6 flex-1 flex flex-col justify-center py-16">
+
+          <p
+            className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-16 animate-hero-in"
+            style={{ animationDelay: '0ms' }}
+          >
             Teaching After the Feed / Action Research
           </p>
 
-          <div className="grid sm:grid-cols-12 gap-x-8 gap-y-10 items-end">
-            <div className="sm:col-span-7">
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-[5.25rem] leading-[0.93] tracking-tight text-stone-900">
+          <div className="grid lg:grid-cols-12 gap-x-8 items-start">
+            {/* Headline + copy + CTAs */}
+            <div
+              className="lg:col-span-7 animate-hero-in"
+              style={{ animationDelay: '80ms' }}
+            >
+              <h1 className="font-serif text-[3rem] sm:text-[4.5rem] lg:text-[5.25rem] leading-[0.93] tracking-tight text-stone-900 mb-10">
                 Research-driven tools for teaching in algorithmic culture.
               </h1>
+              <p className="text-[15px] text-stone-500 leading-[1.8] max-w-[44ch] mb-10">
+                Students encounter most images through algorithmically curated
+                feeds before they encounter them in a classroom. These tools
+                are built from an inquiry into what that changes, and what
+                teachers can do in response.
+              </p>
+              <div className="flex items-center gap-6 flex-wrap">
+                <Link
+                  href="/#tools"
+                  className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-[#faf8f5] active:scale-[0.98] transition-all duration-150"
+                >
+                  View tools
+                </Link>
+                <Link
+                  href="/research"
+                  className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 transition-colors duration-150"
+                >
+                  About the research →
+                </Link>
+              </div>
             </div>
 
-            <div className="sm:col-span-4 sm:col-start-9">
-              <p className="text-sm text-stone-500 leading-relaxed mb-7">
-                Students today encounter most images through algorithmically
-                curated feeds before they encounter them in a classroom.
-                These tools are built from an inquiry into what that changes,
-                and what teachers can do in response.
-              </p>
-              <Link
-                href="/#tools"
-                className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border-b border-stone-900 pb-0.5 hover:text-stone-400 hover:border-stone-300 transition-colors duration-200"
-              >
-                {liveCount} tools available
-              </Link>
+            {/* Warm Swiss data block */}
+            <div
+              className="lg:col-span-4 lg:col-start-9 mt-14 lg:mt-0 animate-hero-in"
+              style={{ animationDelay: '160ms' }}
+            >
+              <div style={{ backgroundColor: '#ede0cf' }}>
+                <div className="px-7 pt-6 pb-3" style={{ borderBottom: '1px solid rgba(120,80,40,0.15)' }}>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-stone-500">
+                    Programme overview
+                  </p>
+                </div>
+                <div className="px-7 py-2 pb-4">
+                  {stats.map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="flex justify-between items-baseline py-2.5"
+                      style={{ borderBottom: '1px solid rgba(120,80,40,0.1)' }}
+                    >
+                      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-stone-500">
+                        {label}
+                      </span>
+                      <span className="font-mono text-[11px] tabular-nums text-stone-800">
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="mt-16 h-px bg-stone-200" />
+        <div className="mx-auto max-w-6xl px-6 w-full">
+          <div className="h-px bg-stone-200" />
         </div>
       </section>
 
       {/* Tools index */}
-      <section id="tools" className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex items-baseline justify-between mb-10">
-          <h2 className="font-serif text-3xl text-stone-900">Tools</h2>
+      <section id="tools" className="mx-auto max-w-6xl px-6 pt-14 pb-24">
+        <div className="flex items-baseline justify-between mb-1">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400">
+            Tools
+          </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400">
-            {liveCount} live · more in development
+            {liveCount} live · {devCount} in development
           </p>
         </div>
 
         <div>
           {tools.map((tool, i) => (
-            <ScrollReveal key={tool.slug} delay={i * 60}>
-              <ToolRow tool={tool} index={i} />
-            </ScrollReveal>
+            <ToolEntry key={tool.slug} tool={tool} index={i} />
           ))}
+          <div className="border-t border-stone-200" />
         </div>
       </section>
 
-      {/* Research chapter */}
-      <section className="border-t border-stone-200 bg-stone-900">
+      {/* Research */}
+      <section style={{ backgroundColor: '#1c1008' }}>
         <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
           <ScrollReveal>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-10">
-              Research
-            </p>
-            <blockquote className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.15] tracking-tight text-stone-100 max-w-4xl mb-12">
-              &ldquo;How should classroom teaching respond to the logics of the
-              feed, recommendation, and AI-shaped discovery?&rdquo;
-            </blockquote>
-            <p className="text-sm text-stone-400 leading-relaxed max-w-xl mb-10">
-              An action research study comparing two instructional models —
-              teaching with the feed and teaching against it — across a single
-              art course. The research asks which model better supports depth,
-              transfer, and sustained visual attention.
-            </p>
-            <Link
-              href="/research"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-300 border-b border-stone-700 pb-0.5 hover:text-stone-100 hover:border-stone-400 transition-colors duration-200"
-            >
-              Read the research →
-            </Link>
+            <div className="grid lg:grid-cols-12 gap-x-8 gap-y-10">
+              <div className="lg:col-span-1">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-600 lg:[writing-mode:vertical-rl] lg:rotate-180 lg:h-32">
+                  Research
+                </p>
+              </div>
+              <div className="lg:col-span-8 lg:col-start-3">
+                <blockquote className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.15] tracking-tight text-stone-100 mb-10">
+                  &ldquo;How should classroom teaching respond to the logics of
+                  the feed, recommendation, and AI-shaped discovery?&rdquo;
+                </blockquote>
+                <p className="text-[13px] text-stone-400 leading-[1.8] max-w-[52ch] mb-10">
+                  An action research study comparing two instructional models
+                  across a single art course. The research asks which model
+                  better supports depth, transfer, and sustained visual attention.
+                </p>
+                <Link
+                  href="/research"
+                  className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 border-b border-stone-700 pb-px hover:text-stone-100 hover:border-stone-500 transition-colors duration-200"
+                >
+                  Read the research →
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>

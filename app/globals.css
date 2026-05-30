@@ -34,5 +34,23 @@
       transform: none;
       transition: none;
     }
+    .animate-hero-in {
+      animation: none !important;
+    }
   }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-in {
+  animation: hero-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

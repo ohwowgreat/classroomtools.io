@@ -1,6 +1,0 @@
-name: "Constellation Board"
-tagline: "Place images in relation. Find what connects them."
-description: "A Warburg-inspired tool for arranging images spatially and discovering the patterns that emerge from adjacency. Students juxtapose works, articulate connections, and build arguments before they are given explanations. The board becomes a visible record of their thinking."
-researchModel: with-feed
-researchNote: "The primary tool for feed-like discovery: juxtaposition and adjacency generate pattern recognition before full context is given."
-status: live

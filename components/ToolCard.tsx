@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import type { Tool, ResearchModel } from '@/lib/tools'
-import { researchModelLabel } from '@/lib/tools'
+import type { Tool, ResearchModel } from '@/data/tools'
+import { researchModelLabel } from '@/data/tools'
 
 const borderClass: Record<ResearchModel, string> = {
   'with-feed': 'border-feed-500',
@@ -15,8 +15,7 @@ const modelTextClass: Record<ResearchModel, string> = {
 }
 
 export default function ToolCard({ tool }: { tool: Tool }) {
-  const href = tool.externalUrl ?? `/tools/${tool.slug}`
-  const isExternal = !!tool.externalUrl
+  const href = `/${tool.slug}`
 
   return (
     <article className={`group flex flex-col pt-6 pb-12 border-t-[3px] ${borderClass[tool.researchModel]}`}>
@@ -46,11 +45,9 @@ export default function ToolCard({ tool }: { tool: Tool }) {
       {tool.status === 'live' ? (
         <Link
           href={href}
-          target={isExternal ? '_blank' : undefined}
-          rel={isExternal ? 'noopener noreferrer' : undefined}
           className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-900 hover:text-stone-500 transition-colors group-hover:gap-2.5"
         >
-          {isExternal ? 'Open tool' : 'View tool'}
+          View tool
           <span aria-hidden="true">→</span>
         </Link>
       ) : (

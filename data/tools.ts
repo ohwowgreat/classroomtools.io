@@ -106,3 +106,7 @@ export const researchModelColor: Record<ResearchModel, string> = {
   'against-feed': 'archive',
   both: 'stone',
 }
+
+export function getTools(): Tool[] {
+  return tools
+}

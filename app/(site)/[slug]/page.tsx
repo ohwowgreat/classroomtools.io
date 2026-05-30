@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getTools, researchModelLabel } from '@/lib/tools'
-import type { ResearchModel } from '@/lib/tools'
+import { getTools, researchModelLabel } from '@/data/tools'
+import type { ResearchModel } from '@/data/tools'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -80,24 +80,16 @@ export default async function ToolPage({ params }: Props) {
         </div>
 
         {/* CTA */}
-        {tool.status === 'live' ? (
-          tool.externalUrl ? (
-            <a
-              href={tool.externalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
-            >
-              Open tool →
-            </a>
-          ) : (
-            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
-              Hosted here — interactive version coming soon.
-            </p>
-          )
+        {tool.status === 'live' && tool.externalUrl ? (
+          <Link
+            href={`/${slug}/use`}
+            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
+          >
+            Launch tool →
+          </Link>
         ) : (
           <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
-            This tool is in development.
+            {tool.status === 'coming-soon' ? 'This tool is in development.' : 'Hosted here — interactive version coming soon.'}
           </p>
         )}
       </div>
