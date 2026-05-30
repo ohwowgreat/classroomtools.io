@@ -4,8 +4,8 @@ compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = ".open-next/worker.js"
 
 routes = [
-  { pattern = "classroomtools.io/*", custom_domain = true },
-  { pattern = "www.classroomtools.io/*", custom_domain = true },
+  { pattern = "classroomtools.io", custom_domain = true },
+  { pattern = "www.classroomtools.io", custom_domain = true },
 ]
 
 [assets]
