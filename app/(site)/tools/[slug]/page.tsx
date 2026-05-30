@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTools, researchModelLabel } from '@/lib/tools'
+import type { ResearchModel } from '@/lib/tools'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -21,10 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-const tagStyles = {
-  'with-feed': 'bg-feed-100 text-feed-700',
-  'against-feed': 'bg-archive-100 text-archive-700',
-  both: 'bg-stone-100 text-stone-600',
+const modelTag: Record<ResearchModel, string> = {
+  'with-feed': 'text-feed-600 bg-feed-50',
+  'against-feed': 'text-archive-600 bg-archive-50',
+  both: 'text-stone-500 bg-stone-100',
 }
 
 export default async function ToolPage({ params }: Props) {
@@ -33,71 +34,73 @@ export default async function ToolPage({ params }: Props) {
   if (!tool) notFound()
 
   return (
-    <div className="mx-auto max-w-2xl px-6 pt-16 pb-24">
-
-      {/* Breadcrumb */}
-      <Link
-        href="/#tools"
-        className="inline-flex items-center gap-1 text-sm text-stone-400 hover:text-stone-700 transition-colors mb-8"
-      >
-        ← All tools
-      </Link>
-
-      {/* Header */}
-      <div className="mb-10">
-        <span
-          className={`inline-block text-xs font-medium rounded-full px-2.5 py-1 mb-4 ${tagStyles[tool.researchModel]}`}
-        >
-          {researchModelLabel[tool.researchModel]}
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-semibold text-stone-900 leading-tight tracking-tight mb-3">
-          {tool.name}
-        </h1>
-        <p className="text-lg text-stone-500">{tool.tagline}</p>
+    <div className="pt-24 pb-32">
+      {/* Chapter header */}
+      <div className="mx-auto max-w-6xl px-6 mb-16">
+        <div className="grid sm:grid-cols-12 gap-x-8">
+          <div className="sm:col-span-8">
+            <Link
+              href="/#tools"
+              className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 hover:text-stone-700 transition-colors mb-8 inline-block"
+            >
+              ← All tools
+            </Link>
+            <div className="mb-5">
+              <span className={`font-mono text-[9px] uppercase tracking-[0.12em] px-2.5 py-1.5 rounded ${modelTag[tool.researchModel]}`}>
+                {researchModelLabel[tool.researchModel]}
+              </span>
+            </div>
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-stone-900 mb-5">
+              {tool.name}
+            </h1>
+            <p className="text-lg text-stone-500 leading-relaxed">{tool.tagline}</p>
+          </div>
+        </div>
+        <div className="h-px bg-stone-200 mt-12" />
       </div>
 
-      {/* Description */}
-      <section className="mb-10">
-        <p className="text-stone-700 leading-relaxed text-base">{tool.description}</p>
-      </section>
-
-      {/* Research connection */}
-      <section className="bg-stone-100 rounded-lg p-5 mb-10">
-        <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
-          Research connection
-        </p>
-        <p className="text-sm text-stone-700 leading-relaxed">{tool.researchNote}</p>
-        <Link
-          href="/research"
-          className="inline-block mt-3 text-xs text-stone-500 hover:text-stone-800 underline underline-offset-2 transition-colors"
-        >
-          Read about the research →
-        </Link>
-      </section>
-
-      {/* CTA */}
-      {tool.status === 'live' ? (
-        tool.externalUrl ? (
-          <a
-            href={tool.externalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-stone-900 border border-stone-900 rounded-full px-5 py-2.5 hover:bg-stone-900 hover:text-stone-50 transition-colors"
-          >
-            Open tool ↗
-          </a>
-        ) : (
-          <div className="bg-stone-100 border border-stone-200 rounded-lg p-6 text-center">
-            <p className="text-sm text-stone-500">
-              This tool is hosted here. Interactive version coming soon.
-            </p>
-          </div>
-        )
-      ) : (
-        <div className="bg-stone-100 border border-stone-200 rounded-lg p-6 text-center">
-          <p className="text-sm text-stone-500">This tool is in development.</p>
+      {/* Body */}
+      <div className="mx-auto max-w-2xl px-6">
+        <div className="mb-12">
+          <p className="text-stone-600 leading-relaxed text-[15px]">{tool.description}</p>
         </div>
-      )}
+
+        {/* Research connection */}
+        <div className="border-l-2 border-stone-200 pl-6 mb-12">
+          <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-stone-400 mb-3">
+            Research connection
+          </p>
+          <p className="text-sm text-stone-600 leading-relaxed mb-4">{tool.researchNote}</p>
+          <Link
+            href="/research"
+            className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400 hover:text-stone-700 underline underline-offset-4 transition-colors"
+          >
+            Read the research →
+          </Link>
+        </div>
+
+        {/* CTA */}
+        {tool.status === 'live' ? (
+          tool.externalUrl ? (
+            <a
+              href={tool.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
+            >
+              Open tool →
+            </a>
+          ) : (
+            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
+              Hosted here — interactive version coming soon.
+            </p>
+          )
+        ) : (
+          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
+            This tool is in development.
+          </p>
+        )}
+      </div>
     </div>
   )
 }
