@@ -75,7 +75,9 @@ export const tools: Tool[] = [
     researchModel: 'both',
     researchNote:
       'Assessment infrastructure that keeps the exam environment controlled without relying on external services.',
-    status: 'coming-soon',
+    externalUrl: 'https://exam.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/Lockdown-Browser',
+    status: 'live',
   },
   {
     slug: 'invigilation-clock',
