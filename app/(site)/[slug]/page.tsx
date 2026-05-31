@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-const modelTag: Record<ResearchModel, string> = {
-  'with-feed': 'text-feed-600 bg-feed-50',
-  'against-feed': 'text-archive-600 bg-archive-50',
-  both: 'text-stone-500 bg-stone-100',
+const modelColors: Record<ResearchModel, string> = {
+  'with-feed':    'text-amber-700 bg-amber-50',
+  'against-feed': 'text-slate-600 bg-slate-50',
+  both:           'text-gray-500 bg-gray-50',
 }
 
 export default async function ToolPage({ params }: Props) {
@@ -36,64 +36,55 @@ export default async function ToolPage({ params }: Props) {
   if (!tool) notFound()
 
   return (
-    <div className="pt-24 pb-32">
-      {/* Chapter header */}
-      <div className="mx-auto max-w-6xl px-6 mb-16">
-        <div className="grid sm:grid-cols-12 gap-x-8">
-          <div className="sm:col-span-8">
-            <Link
-              href="/#tools"
-              className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 hover:text-stone-700 transition-colors mb-8 inline-block"
-            >
-              ← All tools
-            </Link>
-            <div className="mb-5">
-              <span className={`font-mono text-[9px] uppercase tracking-[0.12em] px-2.5 py-1.5 rounded ${modelTag[tool.researchModel]}`}>
-                {researchModelLabel[tool.researchModel]}
-              </span>
-            </div>
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-stone-900 mb-5">
-              {tool.name}
-            </h1>
-            <p className="text-lg text-stone-500 leading-relaxed">{tool.tagline}</p>
-          </div>
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      <Link
+        href="/#tools"
+        className="text-sm text-gray-400 hover:text-gray-700 underline underline-offset-2 inline-block mb-10"
+      >
+        ← All tools
+      </Link>
+
+      {/* Header */}
+      <div className="max-w-2xl mb-10">
+        <div className="mb-3">
+          <span className={`text-xs px-2 py-0.5 ${modelColors[tool.researchModel]}`}>
+            {researchModelLabel[tool.researchModel]}
+          </span>
         </div>
-        <div className="h-px bg-stone-200 mt-12" />
+        <h1 className="text-2xl font-medium mb-2">{tool.name}</h1>
+        <p className="text-sm text-gray-500">{tool.tagline}</p>
       </div>
 
-      {/* Body */}
-      <div className="mx-auto max-w-2xl px-6">
-        <div className="mb-12">
-          <p className="text-stone-600 leading-relaxed text-[15px]">{tool.description}</p>
-        </div>
+      <div className="max-w-2xl space-y-10">
+
+        {/* Description */}
+        <p className="text-sm text-gray-700 leading-relaxed">{tool.description}</p>
 
         {/* Research connection */}
-        <div className="border-l-2 border-stone-200 pl-6 mb-12">
-          <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-stone-400 mb-3">
-            Research connection
-          </p>
-          <p className="text-sm text-stone-600 leading-relaxed mb-4">{tool.researchNote}</p>
+        <div className="border-l-2 border-gray-200 pl-4">
+          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Research connection</p>
+          <p className="text-sm text-gray-600 leading-relaxed mb-3">{tool.researchNote}</p>
           <Link
             href="/research"
-            className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400 hover:text-stone-700 underline underline-offset-4 transition-colors"
+            className="text-sm text-gray-400 underline underline-offset-2 hover:text-gray-700"
           >
             Read the research →
           </Link>
         </div>
 
         {/* CTA + GitHub */}
-        <div className="flex items-center gap-6 flex-wrap mb-20">
+        <div className="flex items-center gap-6 flex-wrap">
           {tool.status === 'live' && tool.externalUrl ? (
             <Link
               href={`/${slug}/use`}
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
+              className="text-sm border border-gray-900 px-4 py-2 hover:bg-gray-900 hover:text-white transition-colors"
             >
               Launch tool →
             </Link>
           ) : (
-            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
-              {tool.status === 'coming-soon' ? 'This tool is in development.' : 'Interactive version coming soon.'}
-            </p>
+            <span className="text-sm text-gray-400">
+              {tool.status === 'coming-soon' ? 'In development.' : 'Interactive version coming soon.'}
+            </span>
           )}
           {tool.githubUrl && (
             <GitHubLink href={tool.githubUrl} label="View source on GitHub" />
@@ -102,18 +93,18 @@ export default async function ToolPage({ params }: Props) {
 
         {/* Feedback */}
         {tool.githubUrl && (
-          <div className="border-t border-stone-200 pt-12">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-2">
-              Feedback
-            </p>
-            <p className="text-[13px] text-stone-500 leading-[1.8] mb-8">
-              Something broken? Something missing? These tools are actively developed — input from the classroom shapes what gets built next.
+          <div className="border-t border-gray-100 pt-10">
+            <h2 className="text-xs text-gray-400 uppercase tracking-widest mb-2">Feedback</h2>
+            <p className="text-sm text-gray-500 leading-relaxed mb-6">
+              Something broken? Something missing? These tools are actively developed —
+              input from the classroom shapes what gets built next.
             </p>
             <FeedbackForm
               githubRepo={tool.githubUrl.replace('https://github.com/', '')}
             />
           </div>
         )}
+
       </div>
     </div>
   )

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 interface Props {
-  githubRepo: string // e.g. "ohwowgreat/close-reader"
+  githubRepo: string
   defaultType?: 'feature' | 'bug'
 }
 
@@ -15,7 +15,6 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!title.trim()) return
-
     const params = new URLSearchParams({
       title: title.trim(),
       body: body.trim(),
@@ -45,33 +44,24 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Type toggle */}
       <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={() => setType('feature')}
-          className={`font-mono text-[9px] uppercase tracking-[0.12em] px-3 py-1.5 border transition-colors ${
-            type === 'feature'
-              ? 'bg-stone-900 text-stone-50 border-stone-900'
-              : 'text-stone-400 border-stone-200 hover:border-stone-400 hover:text-stone-700'
-          }`}
-        >
-          Feature request
-        </button>
-        <button
-          type="button"
-          onClick={() => setType('bug')}
-          className={`font-mono text-[9px] uppercase tracking-[0.12em] px-3 py-1.5 border transition-colors ${
-            type === 'bug'
-              ? 'bg-stone-900 text-stone-50 border-stone-900'
-              : 'text-stone-400 border-stone-200 hover:border-stone-400 hover:text-stone-700'
-          }`}
-        >
-          Bug report
-        </button>
+        {(['feature', 'bug'] as const).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setType(t)}
+            className={`text-xs px-3 py-1 border transition-colors ${
+              type === t
+                ? 'bg-gray-900 text-white border-gray-900'
+                : 'text-gray-500 border-gray-200 hover:border-gray-400 hover:text-gray-700'
+            }`}
+          >
+            {t === 'feature' ? 'Feature request' : 'Bug report'}
+          </button>
+        ))}
       </div>
 
-      {/* Title */}
       <div>
-        <label className="block font-mono text-[9px] uppercase tracking-[0.12em] text-stone-400 mb-2">
+        <label className="block text-xs text-gray-400 mb-1.5">
           {type === 'bug' ? 'What went wrong?' : 'What would you like to see?'}
         </label>
         <input
@@ -80,35 +70,32 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={placeholders[type].title}
-          className="w-full text-sm border border-stone-200 px-3 py-2.5 text-stone-900 placeholder:text-stone-300 focus:outline-none focus:border-stone-400 bg-white"
+          className="w-full text-sm border border-gray-200 px-3 py-2 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-gray-400"
         />
       </div>
 
-      {/* Body */}
       <div>
-        <label className="block font-mono text-[9px] uppercase tracking-[0.12em] text-stone-400 mb-2">
-          {type === 'bug' ? 'More detail' : 'Context'}
-          <span className="text-stone-300 ml-1 normal-case tracking-normal font-sans">(optional)</span>
+        <label className="block text-xs text-gray-400 mb-1.5">
+          {type === 'bug' ? 'More detail' : 'Context'}{' '}
+          <span className="text-gray-300">(optional)</span>
         </label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
           placeholder={placeholders[type].body}
           rows={3}
-          className="w-full text-sm border border-stone-200 px-3 py-2.5 text-stone-900 placeholder:text-stone-300 focus:outline-none focus:border-stone-400 bg-white resize-none"
+          className="w-full text-sm border border-gray-200 px-3 py-2 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-gray-400 resize-none"
         />
       </div>
 
-      <div className="flex items-center gap-5 flex-wrap">
+      <div className="flex items-center gap-4">
         <button
           type="submit"
-          className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-2.5 hover:bg-stone-900 hover:text-stone-50 active:scale-[0.98] transition-all duration-150"
+          className="text-sm border border-gray-900 px-4 py-2 hover:bg-gray-900 hover:text-white transition-colors"
         >
           Open on GitHub ↗
         </button>
-        <p className="text-[11px] text-stone-400 leading-relaxed">
-          Opens a pre-filled GitHub issue. A free account is needed to submit.
-        </p>
+        <p className="text-xs text-gray-400">A GitHub account is needed to submit.</p>
       </div>
     </form>
   )

@@ -2,40 +2,15 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-stone-200 mt-auto">
-      <div className="mx-auto max-w-6xl px-6 py-10 grid sm:grid-cols-2 gap-8 items-end">
-        <div>
-          <Link
-            href="/"
-            className="font-serif text-xl tracking-tight text-stone-900 hover:text-stone-500 transition-colors block mb-3"
-          >
-            classroomtools.io
+    <footer className="border-t border-gray-200 mt-auto">
+      <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+        <p className="text-sm text-gray-400">classroomtools.io</p>
+        <p className="text-sm text-gray-400">
+          Built from{' '}
+          <Link href="/research" className="underline hover:text-gray-700">
+            Teaching After the Feed
           </Link>
-          <p className="text-xs text-stone-400 leading-relaxed max-w-xs">
-            Tools built from{' '}
-            <Link
-              href="/research"
-              className="underline underline-offset-2 hover:text-stone-600 transition-colors"
-            >
-              Teaching After the Feed
-            </Link>
-            , an action research study in art education.
-          </p>
-        </div>
-        <nav className="flex sm:justify-end gap-8">
-          <Link
-            href="/#tools"
-            className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 hover:text-stone-700 transition-colors"
-          >
-            Tools
-          </Link>
-          <Link
-            href="/research"
-            className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 hover:text-stone-700 transition-colors"
-          >
-            Research
-          </Link>
-        </nav>
+        </p>
       </div>
     </footer>
   )

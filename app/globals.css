@@ -4,53 +4,16 @@
 
 @layer base {
   html {
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #faf8f5;
-    @apply text-stone-900;
-  }
-}
-
-@layer utilities {
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: #ffffff;
+    color: #1a1a1a;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  a {
+    color: inherit;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    .animate-hero-in {
-      animation: none !important;
-    }
-  }
-}
-
-@keyframes hero-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-hero-in {
-  animation: hero-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
