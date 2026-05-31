@@ -11,7 +11,7 @@ export default function ResearchPage() {
     <div className="space-y-8">
 
       <section>
-        <p className="text-gray-500 mb-1">Action Research · 2024–ongoing</p>
+        <p className="text-gray-500 mb-1">Action Research · 2024–ongoing · Doğan Arslanoğlu</p>
         <h1 className="font-bold text-base mb-3">Teaching After the Feed</h1>
         <p className="mb-3">
           Students today encounter most information through algorithmically ranked surfaces:
@@ -78,11 +78,18 @@ export default function ResearchPage() {
 
       <section>
         <p className="font-bold mb-2">Status</p>
-        <p className="text-gray-600">
+        <p className="text-gray-600 mb-2">
           Proposal accepted. Research design in revision following committee feedback.
           One teacher, one A-Level course, one bounded unit. Same learning goals
           and assessment lenses across both cycles.
         </p>
+        <a
+          href="https://efficient-baseball-8a1.notion.site/Teaching-After-the-Feed-Research-Workspace-341f011a8af28132ba70d4213bc02712?pvs=74"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Research workspace on Notion ↗
+        </a>
       </section>
 
       <section className="pt-4 border-t border-gray-100">
