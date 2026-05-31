@@ -1,5 +1,6 @@
 export type ResearchModel = 'with-feed' | 'against-feed' | 'both'
 export type ToolStatus = 'live' | 'coming-soon'
+export type ToolCategory = 'research' | 'education'
 
 export interface Tool {
   slug: string
@@ -11,6 +12,7 @@ export interface Tool {
   externalUrl?: string
   githubUrl?: string
   status: ToolStatus
+  category: ToolCategory
 }
 
 export const tools: Tool[] = [
@@ -26,6 +28,7 @@ export const tools: Tool[] = [
     externalUrl: 'https://closereading.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/close-reader',
     status: 'live',
+    category: 'research',
   },
   {
     slug: 'constellation-board',
@@ -39,6 +42,7 @@ export const tools: Tool[] = [
     externalUrl: 'https://constellation.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/Constellation-Board',
     status: 'live',
+    category: 'research',
   },
   {
     slug: 'curatewith-art',
@@ -52,6 +56,7 @@ export const tools: Tool[] = [
     externalUrl: 'https://curatewith.art',
     githubUrl: 'https://github.com/ohwowgreat/open-archive',
     status: 'live',
+    category: 'research',
   },
   {
     slug: 'attention-heatmap',
@@ -65,6 +70,7 @@ export const tools: Tool[] = [
     externalUrl: 'https://heatmap.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/attention-heatmap',
     status: 'live',
+    category: 'research',
   },
   {
     slug: 'lockdown-browser',
@@ -78,6 +84,7 @@ export const tools: Tool[] = [
     externalUrl: 'https://exam.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/Lockdown-Browser',
     status: 'live',
+    category: 'education',
   },
   {
     slug: 'invigilation-clock',
@@ -89,6 +96,7 @@ export const tools: Tool[] = [
     researchNote:
       'Classroom infrastructure for assessments.',
     status: 'coming-soon',
+    category: 'education',
   },
   {
     slug: 'jpeg-degradation',
@@ -100,6 +108,7 @@ export const tools: Tool[] = [
     researchNote:
       'Opens a lesson on algorithmic image culture: how images are compressed, optimised, and altered in circulation before they reach anyone\'s feed.',
     status: 'live',
+    category: 'research',
   },
 ]
 
