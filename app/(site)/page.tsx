@@ -1,51 +1,55 @@
 import Link from 'next/link'
-import ToolEntry from '@/components/ToolEntry'
-import FeedbackForm from '@/components/FeedbackForm'
 import { getTools } from '@/data/tools'
+import FeedbackForm from '@/components/FeedbackForm'
 
 export default function HomePage() {
   const tools = getTools()
+  const live = tools.filter(t => t.status === 'live')
+  const soon = tools.filter(t => t.status === 'coming-soon')
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 space-y-16">
+    <div className="space-y-8 py-2">
 
-      {/* Intro */}
-      <section className="max-w-2xl">
-        <p className="text-sm text-gray-500 mb-3">Teaching After the Feed / Action Research</p>
-        <h1 className="text-xl font-medium mb-4">
-          Research-driven tools for teaching in algorithmic culture.
-        </h1>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          Students encounter most images through algorithmically curated feeds
-          before they encounter them in a classroom. These tools are built from
-          an inquiry into what that changes, and what teachers can do about it.{' '}
-          <Link href="/research" className="underline underline-offset-2 hover:text-gray-900">
-            About the research →
-          </Link>
-        </p>
-      </section>
-
-      {/* Tools */}
-      <section id="tools">
-        <h2 className="text-xs text-gray-400 uppercase tracking-widest mb-4">Tools</h2>
-        <div>
-          {tools.map((tool, i) => (
-            <ToolEntry key={tool.slug} tool={tool} index={i} />
-          ))}
-        </div>
-      </section>
-
-      {/* Suggest */}
       <section>
-        <h2 className="text-xs text-gray-400 uppercase tracking-widest mb-4">Suggest</h2>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-lg mb-6">
-          New tools here come from real classroom problems. If something in
-          your practice feels broken, repetitive, or missing — describe it.
-          Not every idea becomes a tool, but every idea is read.
+        <p className="text-gray-500 mb-2">Teaching After the Feed / Action Research</p>
+        <p>
+          Research-driven tools for teaching in algorithmic culture.
+          Built from an ongoing inquiry into how students learn through
+          algorithmically curated media, and what teachers can do about it.{' '}
+          <Link href="/research">About the research.</Link>
         </p>
-        <div className="max-w-lg">
-          <FeedbackForm githubRepo="ohwowgreat/classroomtools.io" defaultType="feature" />
-        </div>
+      </section>
+
+      <section>
+        <p className="font-bold mb-2">Tools</p>
+        <table className="w-full text-left border-collapse">
+          <tbody>
+            {live.map(tool => (
+              <tr key={tool.slug} className="border-t border-gray-200">
+                <td className="py-1 pr-6">
+                  <Link href={`/${tool.slug}`}>{tool.name}</Link>
+                </td>
+                <td className="py-1 text-gray-400">{tool.tagline}</td>
+              </tr>
+            ))}
+            {soon.map(tool => (
+              <tr key={tool.slug} className="border-t border-gray-200">
+                <td className="py-1 pr-6 text-gray-400">{tool.name}</td>
+                <td className="py-1 text-gray-400">{tool.tagline} <em>(coming soon)</em></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <p className="font-bold mb-2">Suggest a tool</p>
+        <p className="text-gray-500 mb-4">
+          New tools come from real classroom problems. Describe something
+          that feels broken, repetitive, or missing. Not every idea becomes
+          a tool, but every idea is read.
+        </p>
+        <FeedbackForm githubRepo="ohwowgreat/classroomtools.io" defaultType="feature" />
       </section>
 
     </div>

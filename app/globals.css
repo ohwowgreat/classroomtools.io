@@ -3,17 +3,23 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   body {
-    background-color: #ffffff;
-    color: #1a1a1a;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    line-height: 1.5;
   }
 
+  /* Let browser default link styling through */
   a {
-    color: inherit;
+    color: -webkit-link;
+    color: linktext;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  a:visited {
+    color: -webkit-activelink;
+    color: visitedtext;
   }
 }
