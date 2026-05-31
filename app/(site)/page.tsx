@@ -4,8 +4,6 @@ import FeedbackForm from '@/components/FeedbackForm'
 
 export default function HomePage() {
   const tools = getTools()
-  const live = tools.filter(t => t.status === 'live')
-  const soon = tools.filter(t => t.status === 'coming-soon')
 
   return (
     <div className="space-y-8 py-2">
@@ -24,18 +22,25 @@ export default function HomePage() {
         <p className="font-bold mb-2">Tools</p>
         <table className="w-full text-left border-collapse">
           <tbody>
-            {live.map(tool => (
+            {tools.map(tool => (
               <tr key={tool.slug} className="border-t border-gray-200">
-                <td className="py-1 pr-6">
-                  <Link href={`/${tool.slug}`}>{tool.name}</Link>
+                <td className="py-1 pr-6 whitespace-nowrap">
+                  {tool.status === 'live'
+                    ? <Link href={`/${tool.slug}`}>{tool.name}</Link>
+                    : <span className="text-gray-400">{tool.name}</span>}
                 </td>
-                <td className="py-1 text-gray-400">{tool.tagline}</td>
-              </tr>
-            ))}
-            {soon.map(tool => (
-              <tr key={tool.slug} className="border-t border-gray-200">
-                <td className="py-1 pr-6 text-gray-400">{tool.name}</td>
-                <td className="py-1 text-gray-400">{tool.tagline} <em>(coming soon)</em></td>
+                <td className="py-1 pr-6 text-gray-400">{tool.tagline}</td>
+                <td className="py-1 whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span
+                      className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ backgroundColor: tool.status === 'live' ? '#22c55e' : '#eab308' }}
+                    />
+                    <span className="text-gray-400 text-xs">
+                      {tool.status === 'live' ? 'Live' : 'In Development'}
+                    </span>
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
