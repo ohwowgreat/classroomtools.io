@@ -8,7 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <Nav />
       </aside>
       {/* Scrollable content */}
-      <main className="ml-40 flex-1 p-8 max-w-2xl">
+      <main className="ml-40 flex-1 pt-5 pr-10 pb-10 max-w-2xl">
         {children}
       </main>
     </div>
