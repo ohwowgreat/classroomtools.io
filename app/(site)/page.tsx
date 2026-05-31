@@ -6,7 +6,7 @@ export default function HomePage() {
   const tools = getTools()
 
   return (
-    <div className="space-y-8 py-2">
+    <div className="space-y-8">
 
       <section>
         <p className="text-gray-500 mb-2">Teaching After the Feed / Action Research</p>
