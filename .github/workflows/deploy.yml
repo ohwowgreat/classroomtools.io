@@ -1,8 +1,8 @@
-name: Deploy to Cloudflare Workers
+name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, design-exploration]
 
 jobs:
   deploy:
@@ -14,8 +14,16 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run cf:build
-      - run: npx wrangler deploy
+      - run: npm run build
+      - name: Deploy (production on main, preview on other branches)
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            npx wrangler pages deploy out --project-name=classroomtools-io --branch=main
+          else
+            npx wrangler pages deploy out --project-name=classroomtools-io --branch=${{ github.ref_name }}
+            echo ""
+            echo "Preview URL: https://${{ github.ref_name }}.classroomtools-io.pages.dev"
+          fi
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
