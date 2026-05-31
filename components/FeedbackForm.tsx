@@ -12,7 +12,13 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
-  function handleSubmit(e: React.FormEvent) {
+  function buildEmailHref() {
+    const subject = encodeURIComponent(`[${type === 'bug' ? 'Bug' : 'Feature'}] ${title.trim()}`)
+    const bodyText = encodeURIComponent(body.trim() || '(no additional context)')
+    return `mailto:dogan.arslanoglu@bnds.cn?subject=${subject}&body=${bodyText}`
+  }
+
+  function handleGitHub(e: React.FormEvent) {
     e.preventDefault()
     if (!title.trim()) return
     const params = new URLSearchParams({
@@ -41,7 +47,7 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3" style={{ maxWidth: '400px' }}>
+    <form onSubmit={handleGitHub} className="space-y-3" style={{ maxWidth: '400px' }}>
       <div>
         <label className="mr-3">
           <input
@@ -96,11 +102,22 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
         />
       </div>
 
-      <div>
-        <button type="submit" className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100" style={{ fontSize: '13px' }}>
-          Submit via GitHub ↗
+      <div className="flex items-center gap-3 flex-wrap">
+        <a
+          href={title.trim() ? buildEmailHref() : undefined}
+          onClick={!title.trim() ? (e) => e.preventDefault() : undefined}
+          className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100"
+          style={{ fontSize: '13px', textDecoration: 'none', color: 'inherit', opacity: title.trim() ? 1 : 0.4, cursor: title.trim() ? 'pointer' : 'default' }}
+        >
+          Submit via email
+        </a>
+        <button
+          type="submit"
+          className="border border-gray-300 px-3 py-1 hover:bg-gray-50 text-gray-500"
+          style={{ fontSize: '13px' }}
+        >
+          Submit on GitHub ↗
         </button>
-        <span className="text-gray-400 ml-3">GitHub account required to submit.</span>
       </div>
     </form>
   )
