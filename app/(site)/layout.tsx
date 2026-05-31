@@ -17,14 +17,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
 
         {/* Fixed left nav — starts at same y as content */}
         <aside
-          className="fixed left-0 w-28 px-3 pt-3 overflow-y-auto"
+          className="fixed left-0 w-44 px-3 pt-3 overflow-y-auto"
           style={{ top: '2.25rem', height: 'calc(100vh - 2.25rem)' }}
         >
           <Nav />
         </aside>
 
-        {/* Scrollable content — same top padding as nav */}
-        <main className="ml-28 flex-1 pt-3 pr-10 pb-16 max-w-2xl">
+        {/* Scrollable content — same top padding as nav, gap from nav */}
+        <main className="ml-44 flex-1 pt-3 pl-10 pr-16 pb-16 max-w-2xl">
           {children}
         </main>
 
