@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTools, researchModelLabel } from '@/data/tools'
-import type { ResearchModel } from '@/data/tools'
-import GitHubLink from '@/components/GitHubLink'
 import FeedbackForm from '@/components/FeedbackForm'
 
 interface Props {
@@ -24,97 +22,59 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-const modelTag: Record<ResearchModel, string> = {
-  'with-feed': 'text-feed-600 bg-feed-50',
-  'against-feed': 'text-archive-600 bg-archive-50',
-  both: 'text-stone-500 bg-stone-100',
-}
-
 export default async function ToolPage({ params }: Props) {
   const { slug } = await params
   const tool = getTools().find((t) => t.slug === slug)
   if (!tool) notFound()
 
   return (
-    <div className="pt-24 pb-32">
-      {/* Chapter header */}
-      <div className="mx-auto max-w-6xl px-6 mb-16">
-        <div className="grid sm:grid-cols-12 gap-x-8">
-          <div className="sm:col-span-8">
-            <Link
-              href="/#tools"
-              className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 hover:text-stone-700 transition-colors mb-8 inline-block"
-            >
-              ← All tools
-            </Link>
-            <div className="mb-5">
-              <span className={`font-mono text-[9px] uppercase tracking-[0.12em] px-2.5 py-1.5 rounded ${modelTag[tool.researchModel]}`}>
-                {researchModelLabel[tool.researchModel]}
-              </span>
-            </div>
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-stone-900 mb-5">
-              {tool.name}
-            </h1>
-            <p className="text-lg text-stone-500 leading-relaxed">{tool.tagline}</p>
-          </div>
-        </div>
-        <div className="h-px bg-stone-200 mt-12" />
-      </div>
+    <div className="space-y-6 py-2">
 
-      {/* Body */}
-      <div className="mx-auto max-w-2xl px-6">
-        <div className="mb-12">
-          <p className="text-stone-600 leading-relaxed text-[15px]">{tool.description}</p>
-        </div>
+      <p><Link href="/">← Index</Link></p>
 
-        {/* Research connection */}
-        <div className="border-l-2 border-stone-200 pl-6 mb-12">
-          <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-stone-400 mb-3">
-            Research connection
+      <section>
+        <h1 className="font-bold text-base mb-1">{tool.name}</h1>
+        <p className="text-gray-500 mb-3">{researchModelLabel[tool.researchModel]}</p>
+        <p className="mb-3">{tool.description}</p>
+      </section>
+
+      <section>
+        <p className="font-bold mb-1">Research connection</p>
+        <p className="text-gray-600 mb-2">{tool.researchNote}</p>
+        <p><Link href="/research">Read the research.</Link></p>
+      </section>
+
+      <section>
+        {tool.status === 'live' && tool.externalUrl ? (
+          <p>
+            <Link href={`/${slug}/use`}>Launch {tool.name} →</Link>
+            {tool.githubUrl && (
+              <> &nbsp;·&nbsp; <Link href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</Link></>
+            )}
           </p>
-          <p className="text-sm text-stone-600 leading-relaxed mb-4">{tool.researchNote}</p>
-          <Link
-            href="/research"
-            className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400 hover:text-stone-700 underline underline-offset-4 transition-colors"
-          >
-            Read the research →
-          </Link>
-        </div>
-
-        {/* CTA + GitHub */}
-        <div className="flex items-center gap-6 flex-wrap mb-20">
-          {tool.status === 'live' && tool.externalUrl ? (
-            <Link
-              href={`/${slug}/use`}
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
-            >
-              Launch tool →
-            </Link>
-          ) : (
-            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
-              {tool.status === 'coming-soon' ? 'This tool is in development.' : 'Interactive version coming soon.'}
-            </p>
-          )}
-          {tool.githubUrl && (
-            <GitHubLink href={tool.githubUrl} label="View source on GitHub" />
-          )}
-        </div>
-
-        {/* Feedback */}
-        {tool.githubUrl && (
-          <div className="border-t border-stone-200 pt-12">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-2">
-              Feedback
-            </p>
-            <p className="text-[13px] text-stone-500 leading-[1.8] mb-8">
-              Something broken? Something missing? These tools are actively developed — input from the classroom shapes what gets built next.
-            </p>
-            <FeedbackForm
-              githubRepo={tool.githubUrl.replace('https://github.com/', '')}
-            />
-          </div>
+        ) : (
+          <p className="text-gray-400">
+            {tool.status === 'coming-soon' ? 'In development.' : 'Interactive version coming soon.'}
+            {tool.githubUrl && (
+              <> &nbsp;·&nbsp; <Link href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</Link></>
+            )}
+          </p>
         )}
-      </div>
+      </section>
+
+      {tool.githubUrl && (
+        <section>
+          <p className="font-bold mb-2">Feedback</p>
+          <p className="text-gray-500 mb-4">
+            Something broken? Something missing? Input from the classroom
+            shapes what gets built next.
+          </p>
+          <FeedbackForm
+            githubRepo={tool.githubUrl.replace('https://github.com/', '')}
+          />
+        </section>
+      )}
+
     </div>
   )
 }

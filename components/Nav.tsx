@@ -1,47 +1,31 @@
-'use client'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { getTools } from '@/data/tools'
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const handle = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handle, { passive: true })
-    return () => window.removeEventListener('scroll', handle)
-  }, [])
+  const tools = getTools()
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-stone-200'
-          : ''
-      }`}
-      style={{ backgroundColor: scrolled ? 'rgba(250,248,245,0.96)' : 'transparent', backdropFilter: scrolled ? 'blur(8px)' : 'none' }}
-    >
-      <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-serif text-lg tracking-tight text-stone-900 hover:text-stone-500 transition-colors"
-        >
-          classroomtools.io
-        </Link>
-        <nav className="flex items-center gap-7">
-          <Link
-            href="/#tools"
-            className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 transition-colors"
-          >
-            Tools
-          </Link>
-          <Link
-            href="/research"
-            className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 transition-colors"
-          >
-            Research
-          </Link>
-        </nav>
+    <nav className="space-y-4 text-[13px]">
+      <div>
+        <div className="text-gray-400 mb-1">Tools</div>
+        <ul className="space-y-0.5 list-none p-0 m-0">
+          {tools.map((tool) => (
+            <li key={tool.slug}>
+              {tool.status === 'coming-soon' ? (
+                <span className="text-gray-400">{tool.name}</span>
+              ) : (
+                <Link href={`/${tool.slug}`}>{tool.name}</Link>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-    </header>
+
+      <div>
+        <ul className="space-y-0.5 list-none p-0 m-0">
+          <li><Link href="/research">Research</Link></li>
+        </ul>
+      </div>
+    </nav>
   )
 }

@@ -1,33 +1,28 @@
-// Warm Swiss — Swiss grid structure, warm-modern hover and palette
 import Link from 'next/link'
 import type { Tool } from '@/data/tools'
+
+const modelLabel: Record<string, string> = {
+  'with-feed':    'With feed',
+  'against-feed': 'Against feed',
+  both:           'Both models',
+}
 
 interface Props {
   tool: Tool
   index: number
 }
 
-export default function ToolEntry({ tool, index }: Props) {
+export default function ToolEntry({ tool }: Props) {
   const isComingSoon = tool.status === 'coming-soon'
-  const num = String(index + 1).padStart(2, '0')
 
   if (isComingSoon) {
     return (
-      <div className="grid grid-cols-12 gap-x-6 sm:gap-x-8 items-baseline border-t border-stone-200 py-7 px-1">
-        <span className="col-span-1 font-mono text-[10px] tabular-nums tracking-widest text-stone-200 self-start pt-0.5">
-          {num}
-        </span>
-        <div className="col-span-9 sm:col-span-10">
-          <p className="font-serif text-2xl sm:text-[1.625rem] leading-tight tracking-tight text-stone-300 mb-1">
-            {tool.name}
-          </p>
-          <p className="text-[13px] text-stone-300 leading-relaxed">{tool.tagline}</p>
+      <div className="flex items-baseline justify-between py-3 border-b border-gray-100">
+        <div className="flex items-baseline gap-8 min-w-0">
+          <span className="text-sm text-gray-300 truncate">{tool.name}</span>
+          <span className="text-xs text-gray-300 hidden sm:block shrink-0">{modelLabel[tool.researchModel]}</span>
         </div>
-        <div className="col-span-2 sm:col-span-1 text-right self-start pt-0.5">
-          <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-stone-300">
-            Soon
-          </span>
-        </div>
+        <span className="text-xs text-gray-300 shrink-0 ml-4">Soon</span>
       </div>
     )
   }
@@ -35,24 +30,17 @@ export default function ToolEntry({ tool, index }: Props) {
   return (
     <Link
       href={`/${tool.slug}`}
-      className="group grid grid-cols-12 gap-x-6 sm:gap-x-8 items-baseline border-t border-stone-200 py-7 px-1 hover:bg-[#fdf6ef] transition-colors duration-200"
+      className="flex items-baseline justify-between py-3 border-b border-gray-100 hover:bg-gray-50 -mx-2 px-2 group"
     >
-      <span className="col-span-1 font-mono text-[10px] tabular-nums tracking-widest text-stone-300 group-hover:text-stone-400 transition-colors duration-200 self-start pt-0.5">
-        {num}
-      </span>
-      <div className="col-span-9 sm:col-span-10">
-        <p className="font-serif text-2xl sm:text-[1.625rem] leading-tight tracking-tight text-stone-900 group-hover:text-stone-600 transition-colors duration-200 mb-1">
+      <div className="flex items-baseline gap-8 min-w-0">
+        <span className="text-sm underline underline-offset-2 decoration-gray-300 group-hover:decoration-gray-600 truncate">
           {tool.name}
-        </p>
-        <p className="text-[13px] text-stone-500 leading-relaxed">{tool.tagline}</p>
+        </span>
+        <span className="text-xs text-gray-400 hidden sm:block shrink-0">{modelLabel[tool.researchModel]}</span>
       </div>
-      <div className="col-span-2 sm:col-span-1 text-right self-start pt-1 flex flex-col items-end gap-1.5">
-        <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-stone-400">
-          Live
-        </span>
-        <span className="text-stone-300 group-hover:text-stone-700 group-hover:translate-x-0.5 inline-block transition-all duration-200 text-sm">
-          →
-        </span>
+      <div className="flex items-center gap-3 shrink-0 ml-4">
+        <span className="text-xs text-gray-400">Live</span>
+        <span className="text-gray-300 group-hover:text-gray-600 text-sm">→</span>
       </div>
     </Link>
   )

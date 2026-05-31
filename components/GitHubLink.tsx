@@ -10,7 +10,7 @@ export default function GitHubLink({ href, label = 'View source', className = ''
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400 hover:text-stone-700 transition-colors duration-150 ${className}`}
+      className={`inline-flex items-center gap-1.5 text-sm text-gray-400 underline underline-offset-2 hover:text-gray-700 ${className}`}
     >
       <svg
         width="13"
