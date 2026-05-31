@@ -9,6 +9,7 @@ export interface Tool {
   researchModel: ResearchModel
   researchNote: string
   externalUrl?: string
+  githubUrl?: string
   status: ToolStatus
 }
 
@@ -22,7 +23,8 @@ export const tools: Tool[] = [
     researchModel: 'against-feed',
     researchNote:
       'Supports archive-first teaching by making visual attention deliberate and explicit. Resists the feed impulse to move on before comprehension has landed.',
-    externalUrl: 'https://close-reader.dogan-arslanoglu.workers.dev/',
+    externalUrl: 'https://closereading.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/close-reader',
     status: 'live',
   },
   {
@@ -34,7 +36,8 @@ export const tools: Tool[] = [
     researchModel: 'with-feed',
     researchNote:
       'The primary tool for feed-like discovery: juxtaposition and adjacency generate pattern recognition before full context is given.',
-    externalUrl: 'https://constellation-board-six.vercel.app/',
+    externalUrl: 'https://constellation.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/Constellation-Board',
     status: 'live',
   },
   {
@@ -47,6 +50,7 @@ export const tools: Tool[] = [
     researchNote:
       'The core tool for archive-first teaching: stable, shared, memory-oriented. The class returns to the same bank rather than always encountering the new.',
     externalUrl: 'https://curatewith.art',
+    githubUrl: 'https://github.com/ohwowgreat/open-archive',
     status: 'live',
   },
   {
@@ -58,6 +62,8 @@ export const tools: Tool[] = [
     researchModel: 'both',
     researchNote:
       'Surfaces the assumptions students bring to images before teaching begins. Useful in either model.',
+    externalUrl: 'https://heatmap.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/attention-heatmap',
     status: 'live',
   },
   {

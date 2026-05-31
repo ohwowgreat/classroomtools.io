@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import ToolEntry from '@/components/ToolEntry'
 import ScrollReveal from '@/components/ScrollReveal'
+import FeedbackForm from '@/components/FeedbackForm'
 import { getTools } from '@/data/tools'
 
 export default function HomePage() {
@@ -114,6 +115,31 @@ export default function HomePage() {
             <ToolEntry key={tool.slug} tool={tool} index={i} />
           ))}
           <div className="border-t border-stone-200" />
+        </div>
+      </section>
+
+      {/* Request a tool */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="grid lg:grid-cols-12 gap-x-8 gap-y-10">
+          <div className="lg:col-span-1">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400 lg:[writing-mode:vertical-rl] lg:rotate-180">
+              Suggest
+            </p>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-400 mb-4">
+              What would help your teaching?
+            </p>
+            <p className="text-[13px] text-stone-500 leading-[1.8] mb-8">
+              New tools here come from real classroom problems. If something in
+              your practice feels broken, repetitive, or missing — describe it.
+              Not every idea becomes a tool, but every idea is read.
+            </p>
+            <FeedbackForm
+              githubRepo="ohwowgreat/classroomtools.io"
+              defaultType="feature"
+            />
+          </div>
         </div>
       </section>
 

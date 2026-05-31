@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTools, researchModelLabel } from '@/data/tools'
 import type { ResearchModel } from '@/data/tools'
+import GitHubLink from '@/components/GitHubLink'
+import FeedbackForm from '@/components/FeedbackForm'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -79,18 +81,38 @@ export default async function ToolPage({ params }: Props) {
           </Link>
         </div>
 
-        {/* CTA */}
-        {tool.status === 'live' && tool.externalUrl ? (
-          <Link
-            href={`/${slug}/use`}
-            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
-          >
-            Launch tool →
-          </Link>
-        ) : (
-          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
-            {tool.status === 'coming-soon' ? 'This tool is in development.' : 'Hosted here — interactive version coming soon.'}
-          </p>
+        {/* CTA + GitHub */}
+        <div className="flex items-center gap-6 flex-wrap mb-20">
+          {tool.status === 'live' && tool.externalUrl ? (
+            <Link
+              href={`/${slug}/use`}
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-stone-900 border border-stone-900 px-5 py-3 hover:bg-stone-900 hover:text-stone-50 transition-colors duration-200"
+            >
+              Launch tool →
+            </Link>
+          ) : (
+            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-400">
+              {tool.status === 'coming-soon' ? 'This tool is in development.' : 'Interactive version coming soon.'}
+            </p>
+          )}
+          {tool.githubUrl && (
+            <GitHubLink href={tool.githubUrl} label="View source on GitHub" />
+          )}
+        </div>
+
+        {/* Feedback */}
+        {tool.githubUrl && (
+          <div className="border-t border-stone-200 pt-12">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-2">
+              Feedback
+            </p>
+            <p className="text-[13px] text-stone-500 leading-[1.8] mb-8">
+              Something broken? Something missing? These tools are actively developed — input from the classroom shapes what gets built next.
+            </p>
+            <FeedbackForm
+              githubRepo={tool.githubUrl.replace('https://github.com/', '')}
+            />
+          </div>
         )}
       </div>
     </div>
