@@ -98,30 +98,22 @@ export default function ResearchPage() {
         <div className="space-y-6">
           <div>
             <p className="font-bold mb-1">Model A — Teaching with the feed</p>
-            <p className="text-gray-500 mb-2">
-              Teacher-designed sequences borrowing features from the feed without handing control to a platform.
+            <p className="text-gray-600">
+              Teacher-designed sequences that borrow the structural logic of the feed —
+              adjacency, contrast, incremental reveal — without handing control to a platform.
+              The lesson is shaped like a curated discovery: students encounter examples before
+              they receive explanations.
             </p>
-            <ul className="list-disc pl-5 space-y-1 text-gray-600">
-              <li>Curate 4–6 tightly related examples</li>
-              <li>Begin with comparison before explanation</li>
-              <li>Reveal context incrementally</li>
-              <li>Signal the next move clearly</li>
-              <li>Build lessons through adjacency, contrast, and pattern</li>
-            </ul>
           </div>
 
           <div>
             <p className="font-bold mb-1">Model B — Teaching against the feed</p>
-            <p className="text-gray-500 mb-2">
-              Archive-first structures that resist novelty in favour of return, reuse, and accumulation.
+            <p className="text-gray-600">
+              Archive-first structures that resist novelty in favour of return, reuse, and
+              accumulation. Students begin from a stable reference bank and revisit prior
+              material before new material is introduced. The lesson is shaped like a
+              library, not a queue.
             </p>
-            <ul className="list-disc pl-5 space-y-1 text-gray-600">
-              <li>Begin from a stable archive or reference bank</li>
-              <li>Revisit prior material before adding new material</li>
-              <li>Use slower pacing and stronger categorisation</li>
-              <li>Make pathways explicit</li>
-              <li>Build retrieval and annotation into each lesson</li>
-            </ul>
           </div>
         </div>
       </section>
