@@ -24,7 +24,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </aside>
 
         {/* Scrollable content — same top padding as nav, gap from nav */}
-        <main className="ml-44 flex-1 pt-3 pl-10 pr-16 pb-16 max-w-2xl">
+        <main className="ml-44 flex-1 pt-6 pl-10 pr-24 pb-24 max-w-4xl">
           {children}
         </main>
 
