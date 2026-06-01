@@ -34,9 +34,9 @@ export default function HomePage() {
 
       <section>
         <p className="mb-3">
-          classroomtools.io is a collection of tools for teachers, built by Doğan Arslanoğlu.
-          It started as a practical side of an action research project on how students learn
-          in algorithmically curated environments, and grew into something more open: tools
+          classroomtools.io is a collection of tools for teachers. It started as the
+          practical side of an action research project on how students learn in
+          algorithmically curated environments, and grew into something more open: tools
           that any teacher can use, regardless of whether they are following the research.
         </p>
         <p className="mb-3">
@@ -68,6 +68,12 @@ export default function HomePage() {
           a tool, but every idea is read.
         </p>
         <FeedbackForm githubRepo="ohwowgreat/classroomtools.io" defaultType="feature" />
+      </section>
+
+      <section className="pt-4 border-t border-gray-100">
+        <p className="text-gray-400">
+          Doğan Arslanoğlu · Part of an <Link href="/research">action research project</Link> on teaching in algorithmic culture.
+        </p>
       </section>
 
     </div>
