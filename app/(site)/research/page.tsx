@@ -15,7 +15,7 @@ export default function ResearchPage() {
         <h1 className="font-bold text-base mb-3">Teaching After the Feed</h1>
         <p className="mb-3">
           Students today encounter most information through algorithmically ranked surfaces:
-          feeds, recommendation queues, search results. These surfaces share a logic —
+          feeds, recommendation queues, search results. These surfaces share a logic:
           novelty over return, rapid connection-making, compression of context, engagement
           over depth. The lesson does not share that logic. This is not a problem of
           attention spans. It is a problem of structural legibility.
@@ -28,7 +28,7 @@ export default function ResearchPage() {
           teachers design for it explicitly.
         </p>
         <p>
-          "The less we teach, the more something else does." — Venkatesh Rao,{' '}
+          "The less we teach, the more something else does." Venkatesh Rao,{' '}
           <em>Deep Teaching</em> (2025)
         </p>
       </section>
@@ -40,7 +40,7 @@ export default function ResearchPage() {
           A-Level course. The same learning goals and assessment
           lenses are applied across two instructional cycles, each built around a
           different structural model. The question is not which model is better in
-          the abstract — it is which teacher moves matter, under what conditions,
+          the abstract. It is which teacher moves matter, under what conditions,
           and what students actually do with each.
         </p>
         <p className="mb-3">
@@ -97,17 +97,17 @@ export default function ResearchPage() {
 
         <div className="space-y-6">
           <div>
-            <p className="font-bold mb-1">Model A — Teaching with the feed</p>
+            <p className="font-bold mb-1">Model A: Teaching with the feed</p>
             <p className="text-gray-600">
-              Teacher-designed sequences that borrow the structural logic of the feed —
-              adjacency, contrast, incremental reveal — without handing control to a platform.
-              The lesson is shaped like a curated discovery: students encounter examples before
+              Teacher-designed sequences that borrow the structural logic of the feed:
+              adjacency, contrast, incremental reveal, without handing control to a platform.
+              The lesson is shaped like a curated discovery. Students encounter examples before
               they receive explanations.
             </p>
           </div>
 
           <div>
-            <p className="font-bold mb-1">Model B — Teaching against the feed</p>
+            <p className="font-bold mb-1">Model B: Teaching against the feed</p>
             <p className="text-gray-600">
               Archive-first structures that resist novelty in favour of return, reuse, and
               accumulation. Students begin from a stable reference bank and revisit prior
