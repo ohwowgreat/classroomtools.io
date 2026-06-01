@@ -15,7 +15,7 @@ export default function HomePage() {
           : <span className="text-gray-400">{tool.name}</span>}
       </td>
       <td className="py-1 pr-6 text-gray-400">{tool.tagline}</td>
-      <td className="py-1 whitespace-nowrap">
+      <td className="py-1 whitespace-nowrap text-right" style={{ width: '110px' }}>
         <span className="inline-flex items-center gap-1.5">
           <span
             className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
@@ -39,11 +39,11 @@ export default function HomePage() {
           in algorithmically curated environments, and grew into something more open: tools
           that any teacher can use, regardless of whether they are following the research.
         </p>
-        <p>
+        <p className="mb-3">
           Some tools come directly from the research. Others are just useful.
-          All of them came from a real classroom problem.{' '}
-          <Link href="/research">About the research.</Link>
+          All of them came from a real classroom problem.
         </p>
+        <p><Link href="/research">About the research.</Link></p>
       </section>
 
       <section>
