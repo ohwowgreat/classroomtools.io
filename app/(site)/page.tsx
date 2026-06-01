@@ -33,11 +33,15 @@ export default function HomePage() {
     <div className="space-y-8">
 
       <section>
-        <p className="text-gray-500 mb-2">Teaching After the Feed / Action Research</p>
+        <p className="mb-3">
+          classroomtools.io is a collection of tools for teachers, built by Doğan Arslanoğlu.
+          It started as a practical side of an action research project on how students learn
+          in algorithmically curated environments, and grew into something more open: tools
+          that any teacher can use, regardless of whether they are following the research.
+        </p>
         <p>
-          Research-driven tools for teaching in algorithmic culture.
-          Built from an ongoing inquiry into how students learn through
-          algorithmically curated media, and what teachers can do about it.{' '}
+          Some tools come directly from the research. Others are just useful.
+          All of them came from a real classroom problem.{' '}
           <Link href="/research">About the research.</Link>
         </p>
       </section>
