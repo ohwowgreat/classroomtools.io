@@ -10,19 +10,26 @@ export default function HomePage() {
   const renderRows = (list: typeof tools) => list.map(tool => (
     <tr key={tool.slug} className="border-t border-gray-200">
       <td className="py-1 pr-6 whitespace-nowrap">
-        {tool.status === 'live'
-          ? <Link href={`/${tool.slug}`}>{tool.name}</Link>
-          : <span className="text-gray-400">{tool.name}</span>}
+        {tool.status === 'coming-soon'
+          ? <span className="text-gray-400">{tool.name}</span>
+          : <Link href={`/${tool.slug}`}>{tool.name}</Link>}
       </td>
       <td className="py-1 pr-6 text-gray-400">{tool.tagline}</td>
       <td className="py-1 whitespace-nowrap text-right" style={{ width: '110px' }}>
         <span className="inline-flex items-center gap-1.5">
           <span
             className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
-            style={{ backgroundColor: tool.status === 'live' ? '#22c55e' : '#eab308' }}
+            style={{
+              backgroundColor:
+                tool.status === 'live' ? '#22c55e' :
+                tool.status === 'testing' ? '#3b82f6' :
+                '#eab308'
+            }}
           />
           <span className="text-gray-400 text-xs">
-            {tool.status === 'live' ? 'Live' : 'In Development'}
+            {tool.status === 'live' ? 'Live' :
+             tool.status === 'testing' ? 'Testing' :
+             'In Development'}
           </span>
         </span>
       </td>

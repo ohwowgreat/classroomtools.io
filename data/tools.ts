@@ -1,5 +1,5 @@
 export type ResearchModel = 'with-feed' | 'against-feed' | 'both'
-export type ToolStatus = 'live' | 'coming-soon'
+export type ToolStatus = 'live' | 'coming-soon' | 'testing'
 export type ToolCategory = 'research' | 'education'
 
 export interface Tool {
@@ -83,7 +83,7 @@ export const tools: Tool[] = [
       'The LMS as a structural argument: the interface embodies the research rather than sitting beside it. Course architecture shapes whether students encounter the feed model or the archive model.',
     externalUrl: 'https://lms.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/bnds-lms',
-    status: 'live',
+    status: 'testing',
     category: 'research',
   },
   {
@@ -97,7 +97,7 @@ export const tools: Tool[] = [
       'Assessment infrastructure that keeps the exam environment controlled without relying on external services.',
     externalUrl: 'https://exam.classroomtools.io',
     githubUrl: 'https://github.com/ohwowgreat/Lockdown-Browser',
-    status: 'live',
+    status: 'testing',
     category: 'education',
   },
   {
