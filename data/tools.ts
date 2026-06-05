@@ -73,6 +73,20 @@ export const tools: Tool[] = [
     category: 'research',
   },
   {
+    slug: 'lms',
+    name: 'Classroom LMS',
+    tagline: 'A learning management system built around the research',
+    description:
+      'A lightweight LMS designed to support the instructional models at the centre of the Teaching After the Feed research. Built to make the structure of a course visible and navigable: what students have seen, what they return to, what comes next. Designed for depth over novelty.',
+    researchModel: 'both',
+    researchNote:
+      'The LMS as a structural argument: the interface embodies the research rather than sitting beside it. Course architecture shapes whether students encounter the feed model or the archive model.',
+    externalUrl: 'https://lms.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/bnds-lms',
+    status: 'live',
+    category: 'research',
+  },
+  {
     slug: 'lockdown-browser',
     name: 'Lockdown Browser',
     tagline: 'Fullscreen exams on your local network, no internet required',
