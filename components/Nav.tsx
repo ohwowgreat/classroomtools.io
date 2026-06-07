@@ -10,6 +10,8 @@ export default function Nav() {
     <li key={tool.slug}>
       {tool.status === 'coming-soon' ? (
         <span className="text-gray-400">{tool.name}</span>
+      ) : tool.externalUrl ? (
+        <a href={tool.externalUrl} target="_blank" rel="noopener noreferrer">{tool.name}</a>
       ) : (
         <Link href={`/${tool.slug}`}>{tool.name}</Link>
       )}

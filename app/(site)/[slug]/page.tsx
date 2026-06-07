@@ -45,18 +45,18 @@ export default async function ToolPage({ params }: Props) {
       </section>
 
       <section>
-        {tool.status === 'live' && tool.externalUrl ? (
+        {tool.externalUrl ? (
           <p>
-            <Link href={`/${slug}/use`}>Launch {tool.name} →</Link>
+            <a href={tool.externalUrl} target="_blank" rel="noopener noreferrer">Launch {tool.name} ↗</a>
             {tool.githubUrl && (
-              <> &nbsp;·&nbsp; <Link href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</Link></>
+              <> &nbsp;·&nbsp; <a href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</a></>
             )}
           </p>
         ) : (
           <p className="text-gray-400">
             {tool.status === 'coming-soon' ? 'In development.' : 'Interactive version coming soon.'}
             {tool.githubUrl && (
-              <> &nbsp;·&nbsp; <Link href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</Link></>
+              <> &nbsp;·&nbsp; <a href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub</a></>
             )}
           </p>
         )}

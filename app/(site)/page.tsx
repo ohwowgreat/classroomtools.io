@@ -12,7 +12,9 @@ export default function HomePage() {
       <td className="py-1 pr-6 whitespace-nowrap">
         {tool.status === 'coming-soon'
           ? <span className="text-gray-400">{tool.name}</span>
-          : <Link href={`/${tool.slug}`}>{tool.name}</Link>}
+          : tool.externalUrl
+            ? <a href={tool.externalUrl} target="_blank" rel="noopener noreferrer">{tool.name}</a>
+            : <Link href={`/${tool.slug}`}>{tool.name}</Link>}
       </td>
       <td className="py-1 pr-6 text-gray-400">{tool.tagline}</td>
       <td className="py-1 whitespace-nowrap text-right" style={{ width: '110px' }}>
