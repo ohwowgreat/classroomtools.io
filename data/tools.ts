@@ -110,7 +110,7 @@ export const tools: Tool[] = [
     researchNote:
       'Course infrastructure built on the archive rather than the stream. The folder is a compounding record that the teacher and the class return to, and the student site is stable and revisitable rather than a chronological drip of posts. Following the LLM wiki pattern, knowledge is compiled once and maintained, not re-derived each time it is needed.',
     status: 'testing',
-    category: 'education',
+    category: 'research',
   },
   {
     slug: 'invigilation-clock',
