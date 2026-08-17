@@ -101,6 +101,18 @@ export const tools: Tool[] = [
     category: 'education',
   },
   {
+    slug: 'reflow',
+    name: 'Reflow',
+    tagline: 'Course planning that knows your calendar',
+    description:
+      'Every course in one AI-maintained folder, planned against the real school calendar. When an interruption removes a teaching week, it finds the next fixed deadline, recomputes what still fits, updates every page that carried the old dates, and states plainly what had to be traded away. The pages a teacher approves publish to a password-protected course site, one page at a time, with anything under a Teacher notes heading cut before it can leave.',
+    researchModel: 'against-feed',
+    researchNote:
+      'Course infrastructure built on the archive rather than the stream. The folder is a compounding record that the teacher and the class return to, and the student site is stable and revisitable rather than a chronological drip of posts. Following the LLM wiki pattern, knowledge is compiled once and maintained, not re-derived each time it is needed.',
+    status: 'testing',
+    category: 'education',
+  },
+  {
     slug: 'invigilation-clock',
     name: 'Invigilation Clock',
     tagline: 'Visible timing and pacing for in-room exams',
