@@ -1,34 +1,65 @@
-import Nav from '@/components/Nav'
 import Link from 'next/link'
+import Mark from '@/components/Mark'
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen text-[13px]">
+    <div className="min-h-screen flex flex-col">
 
-      {/* Site title — sits above both columns, same left edge as nav */}
-      <div className="fixed top-0 left-0 right-0 h-9 flex items-center px-3 bg-white z-10">
-        <Link href="/" style={{ color: 'inherit', textDecoration: 'none', fontWeight: 'bold' }}>
-          classroomtools.io
-        </Link>
-      </div>
+      <nav className="border-b" style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}>
+        <div className="wrap h-12 flex items-center gap-5">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-[14px] font-semibold tracking-[-0.02em] no-underline"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            <Mark />
+            classroomtools.io
+          </Link>
+          <div className="ml-auto flex items-center gap-[18px]">
+            <Link href="/#tools" className="navlink hidden sm:block">Tools</Link>
+            <Link href="/research" className="navlink hidden sm:block">Research</Link>
+            <a
+              href="https://github.com/ohwowgreat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navlink hidden sm:block"
+            >
+              GitHub
+            </a>
+            <Link href="/#suggest" className="btn btn-sm">Suggest a tool</Link>
+          </div>
+        </div>
+      </nav>
 
-      {/* Two-column layout below title */}
-      <div className="flex" style={{ marginTop: '2.25rem' }}>
+      <main className="flex-1">{children}</main>
 
-        {/* Fixed left nav — starts at same y as content */}
-        <aside
-          className="fixed left-0 w-44 px-3 pt-3 overflow-y-auto"
-          style={{ top: '2.25rem', height: 'calc(100vh - 2.25rem)' }}
-        >
-          <Nav />
-        </aside>
+      <footer
+        className="border-t pt-8 pb-14 text-[12px]"
+        style={{ borderColor: 'var(--border)', color: 'var(--text-tertiary)' }}
+      >
+        <div className="wrap flex flex-wrap items-center gap-x-[18px] gap-y-2">
+          <span>
+            Doğan Arslanoğlu · Part of an{' '}
+            <Link href="/research" style={{ color: 'var(--text-tertiary)' }}>
+              action research project
+            </Link>{' '}
+            on teaching in algorithmic culture.
+          </span>
+          <div className="ml-auto flex gap-[14px]">
+            <Link href="/#tools" className="navlink">Tools</Link>
+            <Link href="/research" className="navlink">Research</Link>
+            <a
+              href="https://github.com/ohwowgreat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navlink"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+      </footer>
 
-        {/* Scrollable content — same top padding as nav, gap from nav */}
-        <main className="ml-44 flex-1 pt-3 pl-10 pr-24 pb-24 max-w-4xl">
-          {children}
-        </main>
-
-      </div>
     </div>
   )
 }

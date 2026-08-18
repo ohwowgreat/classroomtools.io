@@ -1,32 +1,26 @@
-import type { Metadata } from 'next'
-import { Inter, DM_Serif_Display } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const dmSerifDisplay = DM_Serif_Display({
-  weight: ['400'],
-  subsets: ['latin'],
-  variable: '--font-dm-serif',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'classroomtools.io',
   description:
-    'Research-driven tools for teaching in algorithmic culture, built from Teaching After the Feed.',
+    'Free classroom tools built from Teaching After the Feed, an action research project on how students learn in algorithmic culture.',
   openGraph: {
     title: 'classroomtools.io',
     description:
-      'Research-driven tools for teaching in algorithmic culture.',
+      'Free classroom tools built from Teaching After the Feed, an action research project on teaching in algorithmic culture.',
     url: 'https://classroomtools.io',
     siteName: 'classroomtools.io',
     type: 'website',
   },
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#111111' },
+  ],
 }
 
 export default function RootLayout({
@@ -35,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${dmSerifDisplay.variable}`}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   )

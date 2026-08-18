@@ -13,6 +13,10 @@ export interface Tool {
   githubUrl?: string
   status: ToolStatus
   category: ToolCategory
+  /** Card screenshot under public/shots (720px wide). */
+  screenshot?: string
+  /** Larger variant for tool pages (960px wide), when one exists. */
+  screenshotLg?: string
 }
 
 export const tools: Tool[] = [
@@ -29,6 +33,8 @@ export const tools: Tool[] = [
     githubUrl: 'https://github.com/ohwowgreat/close-reader',
     status: 'live',
     category: 'research',
+    screenshot: '/shots/close-reading.jpg',
+    screenshotLg: '/shots/close-reading-lg.jpg',
   },
   {
     slug: 'constellation-board',
@@ -43,6 +49,8 @@ export const tools: Tool[] = [
     githubUrl: 'https://github.com/ohwowgreat/Constellation-Board',
     status: 'live',
     category: 'research',
+    screenshot: '/shots/constellation-board.jpg',
+    screenshotLg: '/shots/constellation-board-lg.jpg',
   },
   {
     slug: 'curatewith-art',
@@ -54,9 +62,10 @@ export const tools: Tool[] = [
     researchNote:
       'The core tool for archive-first teaching: stable, shared, memory-oriented. The class returns to the same bank rather than always encountering the new.',
     externalUrl: 'https://curatewith.art',
-    githubUrl: 'https://github.com/ohwowgreat/open-archive',
+    githubUrl: 'https://github.com/ohwowgreat/curatewith-art',
     status: 'live',
     category: 'research',
+    screenshot: '/shots/curatewith-art.jpg',
   },
   {
     slug: 'attention-heatmap',
@@ -71,10 +80,11 @@ export const tools: Tool[] = [
     githubUrl: 'https://github.com/ohwowgreat/attention-heatmap',
     status: 'live',
     category: 'research',
+    screenshot: '/shots/attention-heatmap.jpg',
   },
   {
     slug: 'lms',
-    name: 'Classroom LMS',
+    name: 'Cadence LMS',
     tagline: 'A learning management system built around the research',
     description:
       'A lightweight LMS designed to support the instructional models at the centre of the Teaching After the Feed research. Built to make the structure of a course visible and navigable: what students have seen, what they return to, what comes next. Designed for depth over novelty.',
@@ -82,9 +92,10 @@ export const tools: Tool[] = [
     researchNote:
       'The LMS as a structural argument: the interface embodies the research rather than sitting beside it. Course architecture shapes whether students encounter the feed model or the archive model.',
     externalUrl: 'https://lms.classroomtools.io',
-    githubUrl: 'https://github.com/ohwowgreat/bnds-lms',
     status: 'testing',
     category: 'research',
+    screenshot: '/shots/lms.jpg',
+    screenshotLg: '/shots/lms-lg.jpg',
   },
   {
     slug: 'lockdown-browser',
@@ -99,6 +110,7 @@ export const tools: Tool[] = [
     githubUrl: 'https://github.com/ohwowgreat/Lockdown-Browser',
     status: 'testing',
     category: 'education',
+    screenshot: '/shots/lockdown-browser.jpg',
   },
   {
     slug: 'reflow',
@@ -109,8 +121,11 @@ export const tools: Tool[] = [
     researchModel: 'against-feed',
     researchNote:
       'Course infrastructure built on the archive rather than the stream. The folder is a compounding record that the teacher and the class return to, and the student site is stable and revisitable rather than a chronological drip of posts. Following the LLM wiki pattern, knowledge is compiled once and maintained, not re-derived each time it is needed.',
+    externalUrl: 'https://reflow.classroomtools.io',
+    githubUrl: 'https://github.com/ohwowgreat/reflow',
     status: 'testing',
     category: 'research',
+    screenshot: '/shots/reflow.jpg',
   },
   {
     slug: 'invigilation-clock',
@@ -126,30 +141,46 @@ export const tools: Tool[] = [
   },
   {
     slug: 'jpeg-degradation',
-    name: 'JPEG Degradation',
+    name: 'The Travelling Image',
     tagline: 'Watch an image lose data every time it is saved',
     description:
       'A demonstration tool that makes lossy compression visible. Each time a JPEG is re-saved, it loses data. Run the sequence and watch the image degrade. A provocation for a lesson on what platforms do to images in circulation.',
     researchModel: 'with-feed',
     researchNote:
       'Opens a lesson on algorithmic image culture: how images are compressed, optimised, and altered in circulation before they reach anyone\'s feed.',
+    githubUrl: 'https://github.com/ohwowgreat/jpegdegradation',
     status: 'live',
     category: 'research',
+    screenshot: '/shots/jpeg-degradation.jpg',
   },
 ]
 
 export const researchModelLabel: Record<ResearchModel, string> = {
-  'with-feed': 'Teaching with the feed',
-  'against-feed': 'Teaching against the feed',
-  both: 'Both models',
-}
-
-export const researchModelColor: Record<ResearchModel, string> = {
-  'with-feed': 'feed',
-  'against-feed': 'archive',
-  both: 'stone',
+  'with-feed': 'With the feed',
+  'against-feed': 'Against the feed',
+  both: 'Either model',
 }
 
 export function getTools(): Tool[] {
   return tools
+}
+
+export function getTool(slug: string): Tool | undefined {
+  return tools.find((t) => t.slug === slug)
+}
+
+export interface SiteStats {
+  total: number
+  live: number
+  models: number
+  openRepos: number
+}
+
+export function getStats(): SiteStats {
+  return {
+    total: tools.length,
+    live: tools.filter((t) => t.status === 'live').length,
+    models: 2,
+    openRepos: tools.filter((t) => t.githubUrl).length,
+  }
 }
