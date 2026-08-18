@@ -2,7 +2,7 @@
   "artboards": [
     { "file": "Main.dc.html", "title": "A · Showcase", "x": 0, "y": 0, "w": 1440, "h": 4060 },
     { "file": "OptionB.dc.html", "title": "B · Catalog", "x": 1560, "y": 0, "w": 1440, "h": 2166 },
-    { "file": "OptionC.dc.html", "title": "C · Research-led", "x": 3120, "y": 0, "w": 1440, "h": 2183 },
+    { "file": "OptionC.dc.html", "title": "C · Research-led", "x": 3120, "y": 0, "w": 1440, "h": 2201 },
     { "file": "ToolPage.dc.html", "title": "Tool page pattern", "x": 1560, "y": 2360, "w": 1440, "h": 2041 },
     { "file": "Dark.dc.html", "title": "Dark theme proof", "x": 3120, "y": 2360, "w": 1440, "h": 1085 }
   ],
