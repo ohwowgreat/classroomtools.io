@@ -1,0 +1,154 @@
+<!-- Tool detail page · Constellation Board — the per-tool pattern shared by all directions -->
+<nav class="topbar">
+  <div class="in">
+    <span class="brand">
+      <svg width="18" height="18" viewBox="0 0 22 22" aria-hidden="true">
+        <line x1="5" y1="16" x2="11" y2="5" stroke="var(--border-strong)" stroke-width="1.5"/>
+        <line x1="11" y1="5" x2="17" y2="13" stroke="var(--border-strong)" stroke-width="1.5"/>
+        <line x1="5" y1="16" x2="17" y2="13" stroke="var(--border-strong)" stroke-width="1.5"/>
+        <circle cx="5" cy="16" r="3" fill="var(--accent)"/>
+        <circle cx="11" cy="5" r="3" fill="var(--status-warning)"/>
+        <circle cx="17" cy="13" r="3" fill="var(--c2)"/>
+      </svg>
+      classroomtools.io
+    </span>
+    <div class="links">
+      <a class="navlink" href="#">Tools</a>
+      <a class="navlink" href="#">Research</a>
+      <a class="navlink" href="#">GitHub</a>
+    </div>
+    <a class="btn sm" href="#">Suggest a tool</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Tool hero -->
+  <section style="padding: 48px 0 56px">
+    <p class="ter" style="margin-bottom: 22px"><a href="#" style="color: var(--text-tertiary)">Tools</a> <span style="opacity: 0.6">/</span> Constellation Board</p>
+    <div style="display: grid; grid-template-columns: 4fr 6fr; gap: 44px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+        <div style="display: flex; gap: 6px">
+          <span class="chip ok">Live</span>
+          <span class="chip feed">Teaching with the feed</span>
+        </div>
+        <h1 style="font-size: 34px">Constellation Board</h1>
+        <p class="lede">Place images in relation. Find what connects them.</p>
+        <p class="sec">
+          A Warburg-inspired tool for arranging images spatially and discovering the patterns
+          that emerge from adjacency. Students juxtapose works, articulate connections, and
+          build arguments before they are given explanations. The board becomes a visible
+          record of their thinking.
+        </p>
+        <div style="display: flex; gap: 10px; margin-top: 6px">
+          <a class="btn" href="#">Open Constellation Board ↗</a>
+          <a class="btn ghost" href="#">Source on GitHub</a>
+        </div>
+        <p class="ter mono">constellation.classroomtools.io &middot; no accounts &middot; free</p>
+      </div>
+      <div class="shot"><img src="./constellation-board-lg.jpg" alt="Constellation Board with a seeded class board"></div>
+    </div>
+  </section>
+
+  <!-- Classroom use -->
+  <section class="sect">
+    <div style="text-align: center; margin-bottom: 26px; display: flex; flex-direction: column; gap: 8px">
+      <p class="eyebrow">In the classroom</p>
+      <h2 style="font-size: 21px">Three moves, one lesson.</h2>
+    </div>
+    <div style="display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden">
+      <div style="background: var(--surface); padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start">
+        <span class="mono" style="font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent); width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center">1</span>
+        <div>
+          <h3>Seed the board</h3>
+          <p class="sec" style="margin-top: 3px">Drop in the images for today — works, details, studies. No accounts, no setup; the board lives in the browser.</p>
+        </div>
+      </div>
+      <div style="background: var(--surface); padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start">
+        <span class="mono" style="font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent); width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center">2</span>
+        <div>
+          <h3>Arrange and argue</h3>
+          <p class="sec" style="margin-top: 3px">Students move images into constellations, label what they see, and add text notes where a connection needs words.</p>
+        </div>
+      </div>
+      <div style="background: var(--surface); padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start">
+        <span class="mono" style="font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent); width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center">3</span>
+        <div>
+          <h3>Keep the record</h3>
+          <p class="sec" style="margin-top: 3px">Export the board as JSON or PDF. The arrangement is the artifact: a visible record of the class's thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research connection -->
+  <section class="sect">
+    <div class="card" style="padding: 22px 24px; border-left: 2px solid var(--c-feed); border-radius: 0 16px 16px 0">
+      <p class="eyebrow">Research connection</p>
+      <p class="sec" style="margin-top: 8px; max-width: 700px">
+        The primary tool for feed-like discovery: juxtaposition and adjacency generate pattern
+        recognition before full context is given. Part of Model A — the lesson shaped like a
+        curated discovery — in <em>Teaching After the Feed</em>. <a href="#">Read the research →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Related tools -->
+  <section class="sect">
+    <p class="eyebrow" style="margin-bottom: 12px">Related tools</p>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px">
+      <div class="toolcard">
+        <div class="thumb"><img src="./jpeg-degradation.jpg" alt="The Travelling Image"></div>
+        <div class="bd">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <h3>The Travelling Image</h3><span class="chip ok" style="margin-left: auto">Live</span>
+          </div>
+          <p class="ter">The other “with the feed” tool: compression made visible.</p>
+        </div>
+      </div>
+      <div class="toolcard">
+        <div class="thumb"><img src="./curatewith-art.jpg" alt="Curatewith.art"></div>
+        <div class="bd">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <h3>Curatewith.art</h3><span class="chip ok" style="margin-left: auto">Live</span>
+          </div>
+          <p class="ter">Feed the board from the class's own archive.</p>
+        </div>
+      </div>
+      <div class="toolcard">
+        <div class="thumb"><img src="./close-reading.jpg" alt="Close Reading"></div>
+        <div class="bd">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <h3>Close Reading</h3><span class="chip ok" style="margin-left: auto">Live</span>
+          </div>
+          <p class="ter">The counter-move: one work, slowly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section class="sect">
+    <div class="card" style="padding: 26px 28px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center">
+      <div>
+        <h3 style="font-size: 16px">Something broken? Something missing?</h3>
+        <p class="sec" style="margin-top: 4px; max-width: 560px">
+          Input from the classroom shapes what gets built next.
+        </p>
+      </div>
+      <a class="btn ghost" href="#">Send feedback</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="wrap" style="display: flex; align-items: center; gap: 18px">
+    <span>Doğan Arslanoğlu &middot; Part of an action research project on teaching in algorithmic culture.</span>
+    <div style="margin-left: auto; display: flex; gap: 14px">
+      <a class="navlink" href="#">Tools</a>
+      <a class="navlink" href="#">Research</a>
+      <a class="navlink" href="#">GitHub</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,18 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "A · Showcase", "x": 0, "y": 0, "w": 1440, "h": 4060 },
+    { "file": "OptionB.dc.html", "title": "B · Catalog", "x": 1560, "y": 0, "w": 1440, "h": 2166 },
+    { "file": "OptionC.dc.html", "title": "C · Research-led", "x": 3120, "y": 0, "w": 1440, "h": 2183 },
+    { "file": "ToolPage.dc.html", "title": "Tool page pattern", "x": 1560, "y": 2360, "w": 1440, "h": 2041 },
+    { "file": "Dark.dc.html", "title": "Dark theme proof", "x": 3120, "y": 2360, "w": 1440, "h": 1085 }
+  ],
+  "annotations": [
+    { "id": "intro", "x": -370, "y": 0, "w": 320, "text": "classroomtools.io redesign — three directions, one design language.\n\nAll three use the Cadence design system lifted from the reflow-site and cadence-lms repos: same tokens, three greys, alpha borders, no shadows, mono for values, 13px body.\n\nEvery screenshot is the real tool, captured running locally with real classroom-style content.\n\nDirections can be mixed — e.g. A's hero with B's full grid." },
+    { "id": "note-a", "x": 0, "y": -140, "w": 400, "text": "A · Showcase\nReflow's marketing anatomy applied to the whole suite: hero with screenshot fan, stats, three featured tools, compact grid, research band, quote, suggest CTA.\nTradeoff: the longest page — the most copy to keep current." },
+    { "id": "note-b", "x": 1560, "y": -140, "w": 400, "text": "B · Catalog\nThe tool index is the page: compact hero, filter chips, every tool as an equal card with screenshot. Fastest route from landing to a tool.\nTradeoff: least narrative pull — the research reduces to one strip." },
+    { "id": "note-c", "x": 3120, "y": -140, "w": 400, "text": "C · Research-led\nLeads with the argument, set in the Cadence document (serif) voice. Tools appear grouped under the two instructional models, then a quiet index table.\nTradeoff: tools sit lower on the page; least conventional as marketing." },
+    { "id": "note-tool", "x": 1560, "y": 2250, "w": 400, "text": "Tool page pattern — one per tool, shared by every direction (shown: Constellation Board). Chips for status + research model, real screenshot, classroom steps, research connection, related tools." },
+    { "id": "note-dark", "x": 3120, "y": 2250, "w": 400, "text": "Dark theme proof — the same tokens as Cadence and Reflow dark. Cadence's own dark dashboard shot drops in unchanged." }
+  ],
+  "launch": { "view": "canvas" }
+}
