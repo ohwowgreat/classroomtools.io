@@ -47,77 +47,65 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
   }
 
   return (
-    <form onSubmit={handleGitHub} className="space-y-3" style={{ maxWidth: '400px' }}>
-      <div>
-        <label className="mr-3">
-          <input
-            type="radio"
-            name="type"
-            value="feature"
-            checked={type === 'feature'}
-            onChange={() => setType('feature')}
-            className="mr-1"
-          />
+    <form onSubmit={handleGitHub} className="flex flex-col gap-3 w-full max-w-[420px]">
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setType('feature')}
+          className={`filterchip ${type === 'feature' ? 'filterchip-on' : ''}`}
+          aria-pressed={type === 'feature'}
+        >
           Feature request
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="type"
-            value="bug"
-            checked={type === 'bug'}
-            onChange={() => setType('bug')}
-            className="mr-1"
-          />
+        </button>
+        <button
+          type="button"
+          onClick={() => setType('bug')}
+          className={`filterchip ${type === 'bug' ? 'filterchip-on' : ''}`}
+          aria-pressed={type === 'bug'}
+        >
           Bug report
-        </label>
+        </button>
       </div>
 
       <div>
-        <label className="block text-gray-500 mb-1">
+        <label className="ter block mb-1" htmlFor="fb-title">
           {type === 'bug' ? 'What went wrong?' : 'What would you like to see?'}
         </label>
         <input
+          id="fb-title"
           type="text"
           required
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={placeholders[type].title}
-          className="w-full border border-gray-300 px-2 py-1"
-          style={{ fontSize: '13px' }}
+          className="field"
         />
       </div>
 
       <div>
-        <label className="block text-gray-500 mb-1">
+        <label className="ter block mb-1" htmlFor="fb-body">
           {type === 'bug' ? 'More detail' : 'Context'} (optional)
         </label>
         <textarea
+          id="fb-body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           placeholder={placeholders[type].body}
           rows={3}
-          className="w-full border border-gray-300 px-2 py-1 resize-none"
-          style={{ fontSize: '13px' }}
+          className="field resize-none"
         />
       </div>
 
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center gap-[10px] flex-wrap">
+        <button type="submit" className="btn">Submit on GitHub ↗</button>
         <a
           href={title.trim() ? buildEmailHref() : undefined}
           onClick={!title.trim() ? (e) => e.preventDefault() : undefined}
-          className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100"
-          style={{ fontSize: '13px', textDecoration: 'none', color: 'inherit', opacity: title.trim() ? 1 : 0.4, cursor: title.trim() ? 'pointer' : 'default' }}
+          className="btn btn-ghost"
+          style={{ opacity: title.trim() ? 1 : 0.45, cursor: title.trim() ? 'pointer' : 'default' }}
         >
           Submit via email
         </a>
-        <button
-          type="submit"
-          className="border border-gray-300 px-3 py-1 hover:bg-gray-50 text-gray-500"
-          style={{ fontSize: '13px' }}
-        >
-          Submit on GitHub ↗
-        </button>
       </div>
     </form>
   )
