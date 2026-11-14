@@ -37,8 +37,6 @@ if (provision) {
 }
 const binding = (preview ? config.env?.preview : config)?.d1_databases?.[0]
 if (!binding?.database_id) throw new Error('Run npm run setup:storage with the owner Cloudflare login before deploying.')
-config.pages_build_output_dir = resolve('out')
-config.d1_databases = [{ ...binding, migrations_dir: resolve(binding.migrations_dir) }]
-delete config.env
-writeFileSync('wrangler.deploy.json', JSON.stringify(config, null, 2) + '\n')
+// Pages deploys must discover the standard wrangler.jsonc path themselves.
+// Its top-level bindings serve production; env.preview isolates other branches.
 console.log(`Public painting storage bound: ${binding.database_name}`)

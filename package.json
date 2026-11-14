@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:cf": "next build && node scripts/prepare-pages-deploy.mjs && wrangler pages deploy out --config wrangler.deploy.json --project-name=classroomtools-io",
+    "deploy:cf": "next build && node scripts/prepare-pages-deploy.mjs && wrangler pages deploy out --project-name=classroomtools-io",
     "deploy:oss": "next build && node scripts/oss-deploy.mjs"
   },
   "dependencies": {

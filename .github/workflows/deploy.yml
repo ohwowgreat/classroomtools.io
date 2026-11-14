@@ -20,9 +20,9 @@ jobs:
       - name: Deploy (production on main, preview on other branches)
         run: |
           if [ "${{ github.ref_name }}" = "main" ]; then
-            npx wrangler pages deploy out --config wrangler.deploy.json --project-name=classroomtools-io --branch=main
+            npx wrangler pages deploy out --project-name=classroomtools-io --branch=main
           else
-            npx wrangler pages deploy out --config wrangler.deploy.json --project-name=classroomtools-io --branch=${{ github.ref_name }}
+            npx wrangler pages deploy out --project-name=classroomtools-io --branch=${{ github.ref_name }}
             echo ""
             echo "Preview URL: https://${{ github.ref_name }}.classroomtools-io.pages.dev"
           fi
