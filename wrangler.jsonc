@@ -3,12 +3,27 @@
   "name": "classroomtools-io",
   "pages_build_output_dir": "out",
   "compatibility_date": "2026-06-02",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "d1_databases": [
     {
       "binding": "PAINTING_DB",
       "database_name": "classroomtools-painting-notes",
-      "migrations_dir": "migrations/painting-notes"
+      "migrations_dir": "migrations/painting-notes",
+      "database_id": "e8fafcb4-37d2-49be-ae93-2459673eeb2a"
     }
-  ]
+  ],
+  "env": {
+    "preview": {
+      "d1_databases": [
+        {
+          "binding": "PAINTING_DB",
+          "database_name": "classroomtools-painting-notes-preview",
+          "migrations_dir": "migrations/painting-notes",
+          "database_id": "97199d61-9da8-47a9-9393-e6897ca40516"
+        }
+      ]
+    }
+  }
 }
