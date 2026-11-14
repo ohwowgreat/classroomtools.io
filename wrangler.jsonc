@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "classroomtools-io",
+  "pages_build_output_dir": "out",
+  "compatibility_date": "2026-06-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "PAINTING_DB",
+      "database_name": "classroomtools-painting-notes",
+      "migrations_dir": "migrations/painting-notes"
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171a1e" />
+    <meta
+      name="description"
+      content="A private film notebook with automatic timestamps. Start together, capture a moment, and export your notes."
+    />
+    <title>Scene Notes · classroomtools.io</title>
+    <link rel="stylesheet" href="/apps/scene-notes/style.css?v=20261020-runtime" />
+    <script defer src="/apps/scene-notes/core.js"></script>
+    <script defer src="/apps/scene-notes/app.js?v=20261020-runtime"></script>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z" /></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" /></symbol>
+      <symbol id="i-export" viewBox="0 0 24 24">
+        <path d="M12 16V3m-4 4 4-4 4 4M5 14v6h14v-6" />
+      </symbol>
+      <symbol id="i-mark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4Z" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24">
+        <path d="M5 3h14v18H5zM9 3v18M12 8h4m-4 4h4" />
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="m10 5-7 7 7 7M3 12h18" /></symbol>
+    </svg>
+    <div class="app">
+      <a class="course-back" href="/" id="course-back"
+        ><svg><use href="#i-back" /></svg>All tools</a
+      >
+      <header class="app-header">
+        <h1>Scene Notes</h1>
+        <div class="header-actions">
+          <button id="notebooks-button" class="quiet" aria-label="Your notebooks">
+            <svg><use href="#i-book" /></svg><span>Notebooks</span>
+          </button>
+          <details class="export-menu" id="export-menu">
+            <summary aria-label="Export or import notes">
+              <svg><use href="#i-export" /></svg><span>Export notes</span>
+            </summary>
+            <div class="menu">
+              <button id="export-text">Download notes (.txt)</button
+              ><button id="export-backup">Download backup (.json)</button
+              ><button id="import-button">Import a backup</button>
+            </div>
+          </details>
+        </div>
+      </header>
+      <div id="storage-warning" class="warning" role="alert" hidden>
+        <p id="storage-message"></p>
+        <button class="quiet" id="recovery-button" hidden>Download recovery copy</button
+        ><button class="quiet" id="reload-button" hidden>Reload saved notes</button>
+      </div>
+      <p id="example-banner" class="example-banner" hidden>Fictional example notes. Changes save separately on this device. <a href="/apps/scene-notes/">Start your own notebook</a></p>
+      <p id="try-example" class="example-banner"><a href="/apps/scene-notes/?example=1">Try a notebook with example notes</a></p>
+      <section class="film-heading" aria-label="Current screening">
+        <div>
+          <h2 id="film-title">New screening</h2>
+          <p id="film-meta">Choose a film or extract in Screening details.</p>
+        </div>
+        <button class="text-button" id="settings-button">Screening details</button>
+      </section>
+      <main>
+        <div class="workspace">
+          <section class="timer-panel" aria-label="Film timer">
+            <span class="muted">Film time</span>
+            <div class="clock" id="clock" role="timer" aria-live="off">00:00:00</div>
+            
+            <p class="timer-status" id="timer-status">Ready to begin</p>
+            <button class="primary timer-button" id="timer-button">
+              <svg><use href="#i-play" /></svg><span>Start</span></button
+            ><button class="text-button sync-button" id="sync-button">Set film time</button>
+            <p class="timer-help" id="timer-help">Press Start on your teacher’s cue.</p>
+            <div class="period-row">
+              <span id="period-label">Period 1 of 1</span
+              ><button class="text-button" id="next-period">Next period</button>
+            </div>
+          </section>
+          <section class="composer" aria-labelledby="composer-label">
+            <div class="composer-heading">
+              <label id="composer-label" for="note-text">Quick note</label
+              ><span id="draft-time" class="draft-time"></span>
+            </div>
+            <textarea
+              id="note-text"
+              maxlength="10000"
+              placeholder="What did you notice?"
+              aria-describedby="draft-status"
+              rows="5"
+            ></textarea>
+            <p id="draft-status" class="small muted">The time is captured when you begin typing.</p>
+            <div class="composer-controls">
+              <fieldset class="kinds">
+                <legend class="sr-only">Note type</legend>
+                <label
+                  ><input type="radio" name="kind" value="observation" checked />Observation</label
+                ><label><input type="radio" name="kind" value="question" />Question</label>
+              </fieldset>
+              <div class="save-actions">
+                <button id="cancel-edit" class="text-button" hidden>Cancel edit</button
+                ><button id="save-note" class="primary" disabled>Save note</button>
+              </div>
+            </div>
+            <div class="mark-row">
+              <button id="mark-button" class="quiet">
+                <svg><use href="#i-mark" /></svg>Mark this moment</button
+              ><span class="shortcut">⌘ / Ctrl + Enter to save</span>
+            </div>
+          </section>
+        </div>
+        <details class="how-to viewing-guide" id="viewing-guide">
+          <summary>What to look for <span class="guide-hint">Quick guide</span></summary>
+          <div>
+            <p class="guide-context" id="guide-context">New screening</p>
+            <p>Watch first. Note a detail, then what it suggests or makes you question.</p>
+            <ul id="viewing-prompts" class="viewing-prompts"></ul>
+            <p class="guide-discussion" id="guide-discussion"></p>
+          </div>
+        </details>
+        <section class="notes-section" aria-labelledby="notes-heading">
+          <div class="notes-heading">
+            <h2 id="notes-heading">Your notes <span id="note-count" class="count">0</span></h2>
+            <div class="filters" role="group" aria-label="Filter notes">
+              <button data-filter="all" aria-pressed="true">All</button
+              ><button data-filter="question" aria-pressed="false">Questions</button
+              ><button data-filter="marked" aria-pressed="false">Marked</button>
+            </div>
+          </div>
+          <p id="notes-empty" class="empty">
+            Your moments will appear here.<span
+              >Write a note, or mark a moment to return to later.</span
+            >
+          </p>
+          <ol id="notes-list" class="notes-list"></ol>
+        </section>
+        <details class="how-to">
+          <summary>Using Scene Notes in class</summary>
+          <div>
+            <p>
+              Start the timer at the same moment your teacher starts the film. Pause and resume on
+              the same cue. If your time is off, use <strong>Set film time</strong> to match the
+              screen.
+            </p>
+            <p>
+              A note keeps the time from your first keystroke.
+              <strong>Mark this moment</strong> saves the current time so you can write later. Use
+              <strong>Next period</strong> to pause and prepare for the next class.
+            </p>
+            <p>
+              Each notebook belongs to this browser on this device. Download a backup before
+              switching devices or clearing browser data. Import it to continue elsewhere.
+            </p>
+          </div>
+        </details>
+      </main>
+      <footer>
+        <p id="storage-status">Saved on this device. Export before switching devices.</p>
+        <button class="text-button" id="share-button">Copy screening link</button>
+      </footer>
+    </div>
+    <div class="toast" id="toast" role="status" hidden>
+      <span id="toast-message"></span><button id="undo-button" hidden>Undo</button>
+    </div>
+    <dialog id="sync-dialog">
+      <form id="sync-form">
+        <div class="dialog-heading">
+          <h2>Set film time</h2>
+          <button type="button" data-close="sync-dialog" class="icon-button" aria-label="Close">
+            <svg><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <p>Match the time shown on the film player. Existing notes keep their timestamps.</p>
+        <label for="sync-time">Film time</label
+        ><input
+          id="sync-time"
+          type="text"
+          inputmode="numeric"
+          placeholder="00:00:00"
+          required
+          pattern="[0-9]{1,3}:[0-9]{1,2}(:[0-9]{1,2})?"
+          autocomplete="off"
+        />
+        <p class="small muted">Use hours:minutes:seconds or minutes:seconds.</p>
+        <p class="error" id="sync-error" hidden></p>
+        <button class="primary" type="submit">Set time</button>
+      </form>
+    </dialog>
+    <dialog id="settings-dialog">
+      <form id="settings-form">
+        <div class="dialog-heading">
+          <h2 id="settings-title">Screening details</h2>
+          <button type="button" data-close="settings-dialog" class="icon-button" aria-label="Close">
+            <svg><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <label for="film-input">Film or extract title</label
+        ><input id="film-input" maxlength="160" required /><label for="course-input">Course</label
+        ><select id="course-input">
+          <option>Art Appreciation</option>
+          <option>Media Studies</option>
+          <option>Other</option>
+        </select>
+        <div class="form-row">
+          <div>
+            <label for="date-input">Discussion date <span class="muted">(optional)</span></label
+            ><input id="date-input" type="date" />
+          </div>
+          <div>
+            <label for="periods-input">Viewing periods</label
+            ><input id="periods-input" type="number" min="1" max="30" value="1" required />
+          </div>
+        </div>
+        <p class="small muted" id="settings-help">
+          Changing details keeps your notes and film time.
+        </p>
+        <button class="primary" type="submit" id="save-settings">Save details</button>
+      </form>
+    </dialog>
+    <dialog id="notebooks-dialog">
+      <div class="dialog-heading">
+        <h2>Your notebooks</h2>
+        <button data-close="notebooks-dialog" class="icon-button" aria-label="Close">
+          <svg><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <p class="muted">Keep a separate notebook for each film or extract.</p>
+      <div id="notebooks-list" class="notebooks-list"></div>
+      <button class="primary" id="new-notebook">
+        <svg><use href="#i-plus" /></svg>New screening
+      </button>
+    </dialog>
+    <dialog id="period-dialog">
+      <form method="dialog">
+        <div class="dialog-heading">
+          <h2>Continue next period</h2>
+          <button class="icon-button" value="cancel" aria-label="Close">
+            <svg><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <p id="period-message"></p>
+        <p>
+          Your notes and current film position will be kept. Press Resume on your teacher’s cue next
+          time.
+        </p>
+        <div class="dialog-actions">
+          <button value="cancel" class="quiet">Cancel</button
+          ><button value="confirm" class="primary">Pause and continue</button>
+        </div>
+      </form>
+    </dialog>
+    <input id="import-file" type="file" accept=".json,application/json" hidden />
+    <noscript
+      ><p class="warning">
+        Scene Notes needs JavaScript to run the timer and save your notes.
+      </p></noscript
+    >
+  </body>
+</html>

@@ -43,7 +43,17 @@ the close-reading text). `*-lg` = 960px wide, plain = 720px wide, `-dark` =
 dark-theme variant where the product ships one. Cadence shots come from the
 repo's own marketing set (`cadence-lms/public/marketing/`).
 
-Scene Notes and Painting Notes previews show the existing course-site apps
-served locally at 1440×900. Both show their initial screens, with no student
-notes or active room codes. Card images are 720px wide; `*-lg` images are
-960px wide. Painting Notes opens the app currently titled Painting Board.
+Scene Notes and Painting Notes previews show the standalone public apps at
+1440×900 with explicitly fictional example content. Scene Notes uses a
+fictional film notebook; Painting Notes shows example annotations on Vermeer's
+*The Milkmaid* in projector view, with no active room code. The painting is
+the existing public-domain course-library image (Rijksmuseum, Amsterdam).
+Both apps offer these examples without mixing them with a visitor's own work.
+
+The Lockdown Browser preview uses the actual StudentExam component from
+`ohwowgreat/Lockdown-Browser` at `1cc22ea1c0b1965fbbbf68dfdaef468fee42a1ec`,
+running locally in its existing teacher-preview mode. A temporary fixture
+API supplies a fictional visual-analysis exam and sample answers. No real
+exam, account, student record, or submission was used.
+
+Card images are 720px wide; `*-lg` detail-page images are 960px wide.

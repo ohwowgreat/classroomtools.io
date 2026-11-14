@@ -25,10 +25,19 @@ that file.
 
 Scene Notes and Painting Notes are additional classroom tools, included in
 the **Classroom infrastructure** filter.
-They open the existing course-site apps at
-[Scene Notes](https://courses.dogan.education/scene-notes) and
-[Painting Board](https://courses.dogan.education/painting-board), respectively.
-Both require the course-site password.
+Both apps run publicly on classroomtools.io, with no account or password:
+
+- [Scene Notes](https://classroomtools.io/apps/scene-notes/) saves notebooks
+  in the visitor's browser. Its fictional example uses separate local storage.
+- [Painting Notes](https://classroomtools.io/apps/painting-notes/) supports
+  shared rooms, student QR links, teacher controls, and board exports.
+  Anyone with a room link can participate; a separate private teacher key
+  protects moderation. The example board runs in the browser without writing
+  to shared storage.
+
+The original course-site apps and their data are unchanged. Public painting
+rooms use a separate Cloudflare D1 database, accessed only by
+`functions/api/painting-notes.ts`.
 
 ## Stack
 
@@ -43,6 +52,10 @@ Both require the course-site password.
 npm install
 npm run dev       # localhost:3000
 npm run build     # generates out/
+npm run db:local  # initializes local painting-room storage
+npm run dev:apps  # complete app + API preview at localhost:8787
+npm test
+PAINTING_TEST_BASE_URL=http://127.0.0.1:8787 npm test  # include API integration check
 ```
 
 ## Adding a tool
@@ -55,3 +68,14 @@ automatically, as do the stats.
 
 Pushes to `main` deploy automatically via Cloudflare Pages.
 Build command: `npm run build` — output directory: `out`
+
+The deployment job runs `scripts/prepare-pages-deploy.mjs` using the existing
+Cloudflare account/token secrets. It finds or creates the public painting
+database, applies versioned migrations, and writes an ignored deployment
+configuration with its exact database ID. The credential needs D1 edit as
+well as Pages deployment permission. Preview branches use a separate database.
+Only `/api/painting-notes` invokes a Pages Function; the catalog and apps stay
+static. `npm run deploy:cf` performs the same preparation for a manual deploy.
+
+The Alibaba OSS deployment script publishes static files only; shared painting
+rooms require the Cloudflare Pages deployment.

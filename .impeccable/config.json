@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "public/apps/scene-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:24:04.591Z",
+        "reason": "Codex verified in the browser: body uses rgb(23,26,30); panels/dialogs use rgb(36,40,45); fields use rgb(29,34,39); ink is rgb(236,232,223). The static parser substitutes white backgrounds and black foregrounds when resolving CSS variables."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "public/apps/painting-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:24:04.615Z",
+        "reason": "Codex verified in the browser: the app renders light ink on its dark body and panels, and dark ink on pastel note backgrounds. The static parser substitutes white when resolving the existing CSS variables."
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "public/apps/painting-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:24:04.639Z",
+        "reason": "Codex verified: the painting and upload-preview images are runtime-bound and hidden until selected or loaded. Browser check confirmed the example painting has nonzero naturalWidth; no empty image is displayed."
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "public/apps/scene-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:24:04.668Z",
+        "reason": "Codex verified: this publication ports the existing Scene Notes design, which already uses self-hosted Lato. Preserving the existing app typography is intentional."
+      },
+      {
+        "rule": "gpt-thin-border-wide-shadow",
+        "value": "*",
+        "files": [
+          "public/apps/scene-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:24:04.692Z",
+        "reason": "Codex verified: these are the four existing native modal dialogs, whose border and offset 65px shadow are retained from the original app. The new example banner has no shadow."
+      }
+    ]
+  }
+}

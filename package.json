@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:apps": "wrangler pages dev out --port 8787",
+    "db:local": "wrangler d1 migrations apply classroomtools-painting-notes --local",
+    "test": "node --test tests/*.test.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:cf": "next build && wrangler pages deploy out --project-name=classroomtools-io",
+    "deploy:cf": "next build && node scripts/prepare-pages-deploy.mjs && wrangler pages deploy out --config wrangler.deploy.json --project-name=classroomtools-io",
     "deploy:oss": "next build && node scripts/oss-deploy.mjs"
   },
   "dependencies": {
@@ -16,6 +19,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
