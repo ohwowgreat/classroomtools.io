@@ -47,6 +47,24 @@
         ],
         "createdAt": "2026-11-14T03:24:04.692Z",
         "reason": "Codex verified: these are the four existing native modal dialogs, whose border and offset 65px shadow are retained from the original app. The new example banner has no shadow."
+      },
+      {
+        "rule": "overused-font",
+        "value": "lato",
+        "files": [
+          "public/apps/scene-notes/style.css"
+        ],
+        "createdAt": "2026-11-14T03:44:46.984Z",
+        "reason": "Codex verified: Lato Regular and Bold are the existing Scene Notes self-hosted font faces, copied with their OFL license. This task publishes the existing app and preserves its visual identity."
+      },
+      {
+        "rule": "overused-font",
+        "value": "lato",
+        "files": [
+          "public/apps/painting-notes/index.html"
+        ],
+        "createdAt": "2026-11-14T03:44:47.006Z",
+        "reason": "Codex verified: Painting Notes retains the original painting app typography shared with Scene Notes. The public-hosting task preserves this existing Lato design."
       }
     ]
   }
