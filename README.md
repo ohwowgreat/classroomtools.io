@@ -69,11 +69,15 @@ automatically, as do the stats.
 Pushes to `main` deploy automatically via Cloudflare Pages.
 Build command: `npm run build` — output directory: `out`
 
-The deployment job runs `scripts/prepare-pages-deploy.mjs` using the existing
-Cloudflare account/token secrets. It finds or creates the public painting
-database, applies versioned migrations, and writes an ignored deployment
-configuration with its exact database ID. The credential needs D1 edit as
-well as Pages deployment permission. Preview branches use a separate database.
+Run `npm run setup:storage` with the owner Cloudflare login for initial setup
+and whenever a new database migration is added. It creates/reuses separate
+production and preview databases, applies versioned migrations, and records
+their non-secret IDs in `wrangler.jsonc`.
+
+The deployment job runs `scripts/prepare-pages-deploy.mjs` without storage
+credentials. It writes an ignored deployment configuration using those IDs.
+The existing CI token retains its Pages deployment permissions; it does not
+need database administration access. Preview branches use a separate database.
 Only `/api/painting-notes` invokes a Pages Function; the catalog and apps stay
 static. `npm run deploy:cf` performs the same preparation for a manual deploy.
 
