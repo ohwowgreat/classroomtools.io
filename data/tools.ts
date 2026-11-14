@@ -109,8 +109,8 @@ export const tools: Tool[] = [
     externalUrl: 'https://classroomtools.io/apps/scene-notes/',
     status: 'live',
     category: 'education',
-    screenshot: '/shots/scene-notes.jpg',
-    screenshotLg: '/shots/scene-notes-lg.jpg',
+    screenshot: '/shots/scene-notes-7ee8dede.jpg',
+    screenshotLg: '/shots/scene-notes-lg-ba973a9e.jpg',
   },
   {
     slug: 'painting-notes',
@@ -124,8 +124,8 @@ export const tools: Tool[] = [
     externalUrl: 'https://classroomtools.io/apps/painting-notes/',
     status: 'live',
     category: 'education',
-    screenshot: '/shots/painting-notes.jpg',
-    screenshotLg: '/shots/painting-notes-lg.jpg',
+    screenshot: '/shots/painting-notes-1db17e6d.jpg',
+    screenshotLg: '/shots/painting-notes-lg-5d8e2f45.jpg',
   },
   {
     slug: 'lockdown-browser',
@@ -140,8 +140,8 @@ export const tools: Tool[] = [
     githubUrl: 'https://github.com/ohwowgreat/Lockdown-Browser',
     status: 'testing',
     category: 'education',
-    screenshot: '/shots/lockdown-browser.jpg',
-    screenshotLg: '/shots/lockdown-browser-lg.jpg',
+    screenshot: '/shots/lockdown-browser-2d3b92a1.jpg',
+    screenshotLg: '/shots/lockdown-browser-lg-bb254c1c.jpg',
   },
   {
     slug: 'reflow',

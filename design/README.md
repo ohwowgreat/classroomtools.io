@@ -57,3 +57,5 @@ API supplies a fictional visual-analysis exam and sample answers. No real
 exam, account, student record, or submission was used.
 
 Card images are 720px wide; `*-lg` detail-page images are 960px wide.
+The Scene Notes, Painting Notes, and Lockdown Browser filenames include a
+content hash so refreshed previews replace older browser-cached images.
