@@ -42,3 +42,8 @@ the tools running locally, seeded with classroom-plausible content
 the close-reading text). `*-lg` = 960px wide, plain = 720px wide, `-dark` =
 dark-theme variant where the product ships one. Cadence shots come from the
 repo's own marketing set (`cadence-lms/public/marketing/`).
+
+Scene Notes and Painting Notes previews show the existing course-site apps
+served locally at 1440×900. Both show their initial screens, with no student
+notes or active room codes. Card images are 720px wide; `*-lg` images are
+960px wide. Painting Notes opens the app currently titled Painting Board.

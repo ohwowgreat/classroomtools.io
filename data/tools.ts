@@ -98,6 +98,36 @@ export const tools: Tool[] = [
     screenshotLg: '/shots/lms-lg.jpg',
   },
   {
+    slug: 'scene-notes',
+    name: 'Scene Notes',
+    tagline: 'Timestamped film notes (course-site password)',
+    description:
+      'A viewing notebook for films and extracts. Start the timer with the screening, pause with the class, and save observations or mark moments to revisit. Notes stay in the browser on that device and can be exported as text or backed up for transfer. The timer is manually synchronized with the film. Hosted on the course site, where the course-site password is required.',
+    researchModel: 'both',
+    researchNote:
+      'Keeps observations attached to specific film moments so students can return to evidence during discussion and compare details across a sequence.',
+    externalUrl: 'https://courses.dogan.education/scene-notes',
+    status: 'live',
+    category: 'education',
+    screenshot: '/shots/scene-notes.jpg',
+    screenshotLg: '/shots/scene-notes-lg.jpg',
+  },
+  {
+    slug: 'painting-notes',
+    name: 'Painting Notes',
+    tagline: 'Shared painting annotations (course-site password)',
+    description:
+      'A shared board for annotating a painting on the classroom projector. Students join from a phone or laptop using a QR code, link, or room code, then pin observations, interpretations, and questions to details in the image. The teacher can pause contributions, hide or focus notes, and export the board. Opens Painting Board on the course site, where the course-site password is required.',
+    researchModel: 'both',
+    researchNote:
+      'Connects each contribution to a precise detail in the painting. The shared board gives the class a record of its observations and interpretations to revisit during discussion.',
+    externalUrl: 'https://courses.dogan.education/painting-board',
+    status: 'live',
+    category: 'education',
+    screenshot: '/shots/painting-notes.jpg',
+    screenshotLg: '/shots/painting-notes-lg.jpg',
+  },
+  {
     slug: 'lockdown-browser',
     name: 'Lockdown Browser',
     tagline: 'Fullscreen exams on your local network, no internet required',

@@ -18,10 +18,17 @@ captured from each tool running with classroom-plausible content (see
 
 ## Tools
 
-All tools are listed in `data/tools.ts` — currently nine, spanning the two
+All tools are listed in `data/tools.ts` — currently eleven, spanning the two
 research models (teaching *with* and *against* the feed) plus classroom
 infrastructure. The tool page at `/[slug]` is generated automatically from
 that file.
+
+Scene Notes and Painting Notes are additional classroom tools, included in
+the **Classroom infrastructure** filter.
+They open the existing course-site apps at
+[Scene Notes](https://courses.dogan.education/scene-notes) and
+[Painting Board](https://courses.dogan.education/painting-board), respectively.
+Both require the course-site password.
 
 ## Stack
 
