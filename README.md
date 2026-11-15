@@ -16,6 +16,15 @@ Tool cards and pages use real product screenshots from `public/shots/`,
 captured from each tool running with classroom-plausible content (see
 `design/README.md` for how).
 
+The homepage follows the approved **Index and Spotlight** study: a searchable
+tool index beside a sticky feature panel for Cadence LMS, Reflow and
+Constellation Board. The panel moves above the list on smaller screens. Its
+tabs support arrow keys, Home and End; `/` focuses search. Full-size previews
+use native dialogs with Escape and focus return. Repeated keyboard actions
+are immediate, and reduced-motion preferences remove motion. Homepage styles
+live in `components/ToolIndex.module.css`; shared colors remain in
+`app/globals.css`.
+
 ## Tools
 
 All tools are listed in `data/tools.ts` — currently eleven, spanning the two

@@ -5,7 +5,35 @@ Goal: make classroomtools.io read as one family with Reflow
 Cadence design system, and make the site marketable with real product
 screenshots.
 
-## The Cadence design system (source of truth)
+## Approved homepage: Index and Spotlight (15 November 2026)
+
+Doğan selected Index and Spotlight from the Emil Design Engineering studies.
+The homepage now uses its split hero, compact searchable rows and sticky
+feature panel, with Cadence LMS initially selected and Reflow and Constellation
+Board available as tabs. On mobile the feature comes before the list in both
+visual and document order. The existing research and suggestion destinations
+remain available; tool facts and screenshots still come from `data/tools.ts`.
+
+The approved palette refines the original Cadence colors for text emphasis:
+blue actions, violet research references, amber discovery, slate archives,
+and green availability. Light and dark values live in `app/globals.css`;
+homepage components are scoped in `components/ToolIndex.module.css`.
+
+| Before | After | Why |
+| --- | --- | --- |
+| The homepage led with a screenshot fan and a card grid. | A compact index sits beside a switchable product feature. | Apply the approved layout while keeping all eleven tools easy to find. |
+| Filters were the only index control. | Search, result counts, reset, and `/` to focus search. | Find a tool by its name or classroom task. |
+| Screenshots opened detail pages. | Native full-size previews include launch, source and detail links. | Inspect a tool without losing the current search or selected feature. |
+
+Validation: production static export and TypeScript checks passed. Existing
+tests passed (five passed; the opt-in painting API integration test was skipped).
+Browser checks at 1440 × 1000 and 390 × 844 covered layout, feature tabs and
+arrow keys, search, category filters, empty-state reset, Escape and focus return.
+Mobile controls and the close button have touch targets of at least 44px;
+the preview fits the screen without horizontal overflow. Public app code and
+database configuration are unchanged.
+
+## Original Cadence design system
 
 Tokens and component patterns are lifted from the live source of both sibling
 products, not re-invented:
@@ -15,7 +43,7 @@ products, not re-invented:
 - `ohwowgreat/cadence-lms` → `app/globals.css` (the same tokens in app form,
   light + dark)
 
-Core rules: three greys per theme (`#fff / #f5f5f5 / #ebebeb`, dark
+Original rules: three greys per theme (`#fff / #f5f5f5 / #ebebeb`, dark
 `#111 / #1a1a1a / #222`), alpha borders (7% / 14%), no shadows on anything
 that sits in the page, 13px body on ~1.7 line-height, system font stack,
 semibold ceiling on headings with tight tracking, mono for values, accent
