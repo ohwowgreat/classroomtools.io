@@ -25,6 +25,13 @@ are immediate, and reduced-motion preferences remove motion. Homepage styles
 live in `components/ToolIndex.module.css`; shared colors remain in
 `app/globals.css`.
 
+Individual tool pages and the research page use the same visual system through
+`components/ContentPages.module.css`. Tool pages pair the product overview with
+its screenshot, followed by the research connection and compact related-tool
+rows. The research page retains the full text and adds section links. Shared
+tool labels and screenshots live in `components/ToolMeta.tsx`; feedback forms
+use `components/FeedbackForm.module.css` throughout the site.
+
 ## Tools
 
 All tools are listed in `data/tools.ts` — currently eleven, spanning the two

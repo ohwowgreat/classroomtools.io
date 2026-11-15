@@ -33,6 +33,28 @@ Mobile controls and the close button have touch targets of at least 44px;
 the preview fits the screen without horizontal overflow. Public app code and
 database configuration are unchanged.
 
+## Tool and research pages
+
+The approved Index and Spotlight visual system also covers all eleven tool
+pages and the research page. These remain statically rendered server pages;
+the existing feedback form supplies their only form interaction. Tool data,
+research prose, source and launch links, and storage configuration are retained.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Tool pages used the earlier badges, card grid and smaller content frame. | The shared 1120px frame, quiet status labels, blue taglines and compact related-tool rows match the homepage. | Make the catalog feel like one site. |
+| The research page used a separate serif heading and centered card sections. | A split heading, restrained colored emphasis and left-aligned sections use the approved typography and spacing. | Keep long-form reading coherent with the tool index. |
+| Feedback forms retained the older buttons and fields. | Shared segmented controls, 9px button corners and at least 44px mobile touch targets. | Keep the interaction details consistent across destinations. |
+
+Desktop and mobile browser checks cover Cadence LMS, Reflow, Painting Notes,
+the source-only Travelling Image and the in-development Invigilation Clock,
+alongside the research page. Screenshots fit their frames and none of these
+pages overflow horizontally. The research questions and section destinations
+are retained; feedback type selection updates its labels and placeholders.
+Production export, TypeScript and the existing test suite are checked before
+deployment. The opt-in painting API integration test is outside this styling
+change and is skipped by the default test command.
+
 ## Original Cadence design system
 
 Tokens and component patterns are lifted from the live source of both sibling

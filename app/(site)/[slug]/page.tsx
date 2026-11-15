@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTools, getTool } from '@/data/tools'
-import { StatusChip, ModelChip } from '@/components/Chips'
+import { ToolStatus, ToolModel, ToolScreenshot } from '@/components/ToolMeta'
 import FeedbackForm from '@/components/FeedbackForm'
+import styles from '@/components/ContentPages.module.css'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -17,10 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const tool = getTool(slug)
   if (!tool) return {}
-  return {
-    title: `${tool.name} | classroomtools.io`,
-    description: tool.description,
-  }
+  return { title: `${tool.name} | classroomtools.io`, description: tool.description }
 }
 
 export default async function ToolPage({ params }: Props) {
@@ -32,121 +30,59 @@ export default async function ToolPage({ params }: Props) {
     .filter((t) => t.slug !== tool.slug && t.screenshot)
     .sort((a, b) => {
       const score = (t: typeof tool) =>
-        (t.researchModel === tool.researchModel ? 2 : 0) +
-        (t.category === tool.category ? 1 : 0)
+        (t.researchModel === tool.researchModel ? 2 : 0) + (t.category === tool.category ? 1 : 0)
       return score(b) - score(a)
     })
     .slice(0, 3)
-
   const domain = tool.externalUrl?.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
   return (
-    <div className="wrap">
+    <div className={`index-wrap ${styles.page}`}>
+      <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+        <Link href="/#tools">Tools</Link><span aria-hidden="true">/</span><span aria-current="page">{tool.name}</span>
+      </nav>
+      <section className={styles.toolHero} aria-labelledby="tool-title">
+        <div className={styles.toolCopy}>
+          <div className={styles.meta}><ToolStatus tool={tool} /><ToolModel tool={tool} /></div>
+          <h1 id="tool-title">{tool.name}</h1>
+          <p className={styles.toolTagline}>{tool.tagline}</p>
+          <p className={styles.toolDescription}>{tool.description}</p>
+          {tool.externalUrl || tool.githubUrl ? <div className={styles.toolActions}>
+            {tool.externalUrl ? <a className={`${styles.button} ${styles.primary}`} href={tool.externalUrl} target="_blank" rel="noopener noreferrer">Open {tool.name} <span aria-hidden="true">↗</span></a> : null}
+            {tool.githubUrl ? <a className={`${styles.button} ${tool.externalUrl ? '' : styles.primary}`} href={tool.githubUrl} target="_blank" rel="noopener noreferrer">Source on GitHub <span aria-hidden="true">↗</span></a> : null}
+          </div> : null}
+          {domain ? <p className={styles.domain}>{domain} · free</p> : null}
+        </div>
+        <div className={styles.toolVisual}><ToolScreenshot tool={tool} /></div>
+      </section>
 
-      {/* Tool hero */}
-      <section className="pt-10 pb-12">
-        <p className="ter mb-5">
-          <Link href="/#tools" style={{ color: 'var(--text-tertiary)' }}>Tools</Link>
-          <span className="opacity-60"> / </span>
-          {tool.name}
-        </p>
-        <div className="grid grid-cols-1 lg:[grid-template-columns:4fr_6fr] gap-8 lg:gap-11 items-center">
-          <div className="flex flex-col items-start gap-3">
-            <div className="flex gap-[6px]">
-              <StatusChip status={tool.status} />
-              {tool.category === 'education'
-                ? <span className="chip chip-neutral">Infrastructure</span>
-                : <ModelChip model={tool.researchModel} long />}
-            </div>
-            <h1 className="text-[34px]">{tool.name}</h1>
-            <p className="lede">{tool.tagline}</p>
-            <p className="sec">{tool.description}</p>
-            <div className="flex flex-wrap gap-[10px] mt-[6px]">
-              {tool.externalUrl && (
-                <a className="btn" href={tool.externalUrl} target="_blank" rel="noopener noreferrer">
-                  Open {tool.name} ↗
-                </a>
-              )}
-              {tool.githubUrl && (
-                <a className="btn btn-ghost" href={tool.githubUrl} target="_blank" rel="noopener noreferrer">
-                  Source on GitHub
-                </a>
-              )}
-            </div>
-            {domain
-              ? <p className="ter mono">{domain} · free</p>
-              : tool.status === 'coming-soon'
-                ? <p className="ter mono">in development</p>
-                : null}
-          </div>
-          {tool.screenshotLg || tool.screenshot ? (
-            <div className="shot">
-              <img src={tool.screenshotLg ?? tool.screenshot} alt={`${tool.name} interface`} />
-            </div>
-          ) : (
-            <div className="shot grid place-items-center aspect-[16/10]" style={{ background: 'var(--surface)' }}>
-              <svg width="64" height="64" viewBox="0 0 44 44" aria-hidden="true">
-                <circle cx="22" cy="22" r="18" fill="none" stroke="var(--border-strong)" strokeWidth="2" />
-                <line x1="22" y1="22" x2="22" y2="11" stroke="var(--text-tertiary)" strokeWidth="2" strokeLinecap="round" />
-                <line x1="22" y1="22" x2="30" y2="26" stroke="var(--text-tertiary)" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </div>
-          )}
+      <section className={`${styles.section} ${styles.connection}`} aria-labelledby="connection-title">
+        <div><p className={styles.context}>Teaching After the Feed</p><h2 id="connection-title">Research connection</h2></div>
+        <div className={styles.connectionCopy}>
+          <p>{tool.researchNote}</p>
+          <Link className={styles.textLink} href="/research">Read the research <span aria-hidden="true">→</span></Link>
         </div>
       </section>
 
-      {/* Research connection */}
-      <section className="sect">
-        <div
-          className="card !p-[22px]"
-          style={{
-            borderLeft: `2px solid ${tool.researchModel === 'against-feed' ? 'var(--c-archive)' : tool.researchModel === 'with-feed' ? 'var(--c-feed)' : 'var(--border-strong)'}`,
-            borderRadius: '0 16px 16px 0',
-          }}
-        >
-          <p className="eyebrow">Research connection</p>
-          <p className="sec mt-2 max-w-[700px]">
-            {tool.researchNote} <Link href="/research">Read the research →</Link>
-          </p>
+      {related.length > 0 ? <section className={styles.section} aria-labelledby="related-title">
+        <div className={styles.sectionHeading}>
+          <h2 id="related-title">Related tools</h2>
+          <Link className={styles.textLink} href="/#tools">Browse all tools <span aria-hidden="true">→</span></Link>
         </div>
-      </section>
-
-      {/* Related tools */}
-      {related.length > 0 && (
-        <section className="sect">
-          <p className="eyebrow mb-3">Related tools</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {related.map((r) => (
-              <Link key={r.slug} href={`/${r.slug}`} className="toolcard no-underline">
-                <div className="thumb"><img src={r.screenshot} alt={`${r.name} interface`} loading="lazy" /></div>
-                <div className="flex flex-col gap-[5px] px-[15px] pt-[13px] pb-[15px]">
-                  <div className="flex items-center gap-2">
-                    <h3 style={{ color: 'var(--text-primary)' }}>{r.name}</h3>
-                    <StatusChip status={r.status} className="ml-auto" />
-                  </div>
-                  <p className="ter">{r.tagline}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Feedback */}
-      <section className="sect">
-        <div className="card !p-6 md:!p-7 grid grid-cols-1 md:grid-cols-2 gap-7 items-start">
-          <div>
-            <h3 className="text-[16px]">Something broken? Something missing?</h3>
-            <p className="sec mt-2 max-w-[420px]">
-              Input from the classroom shapes what gets built next.
-            </p>
-          </div>
-          <FeedbackForm
-            githubRepo={tool.githubUrl ? tool.githubUrl.replace('https://github.com/', '') : 'ohwowgreat/classroomtools.io'}
-          />
+        <div className={styles.relatedList}>
+          {related.map(item => <Link key={item.slug} href={`/${item.slug}`} className={styles.relatedRow}>
+            <div className={styles.relatedImage}><ToolScreenshot tool={item} lazy /></div>
+            <div className={styles.relatedCopy}><h3>{item.name}</h3><p>{item.tagline}</p></div>
+            <div className={styles.relatedMeta}><ToolStatus tool={item} /><ToolModel tool={item} /></div>
+            <span className={styles.relatedArrow} aria-hidden="true">→</span>
+          </Link>)}
         </div>
-      </section>
+      </section> : null}
 
+      <section className={`${styles.section} ${styles.feedback}`} aria-labelledby="feedback-title">
+        <div><h2 id="feedback-title">Something broken?<br />Something missing?</h2><p>Input from the classroom shapes what gets built next.</p></div>
+        <FeedbackForm githubRepo={tool.githubUrl ? tool.githubUrl.replace('https://github.com/', '') : 'ohwowgreat/classroomtools.io'} />
+      </section>
     </div>
   )
 }

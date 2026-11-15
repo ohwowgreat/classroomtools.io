@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import styles from './FeedbackForm.module.css'
 
 interface Props {
   githubRepo: string
@@ -47,12 +48,12 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
   }
 
   return (
-    <form onSubmit={handleGitHub} className="flex flex-col gap-3 w-full max-w-[420px]">
-      <div className="flex gap-2">
+    <form onSubmit={handleGitHub} className={styles.form}>
+      <div className={styles.types} role="group" aria-label="Feedback type">
         <button
           type="button"
           onClick={() => setType('feature')}
-          className={`filterchip ${type === 'feature' ? 'filterchip-on' : ''}`}
+          className={styles.typeButton}
           aria-pressed={type === 'feature'}
         >
           Feature request
@@ -60,7 +61,7 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
         <button
           type="button"
           onClick={() => setType('bug')}
-          className={`filterchip ${type === 'bug' ? 'filterchip-on' : ''}`}
+          className={styles.typeButton}
           aria-pressed={type === 'bug'}
         >
           Bug report
@@ -68,7 +69,7 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
       </div>
 
       <div>
-        <label className="ter block mb-1" htmlFor="fb-title">
+        <label className={styles.label} htmlFor="fb-title">
           {type === 'bug' ? 'What went wrong?' : 'What would you like to see?'}
         </label>
         <input
@@ -78,12 +79,12 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={placeholders[type].title}
-          className="field"
+          className={styles.field}
         />
       </div>
 
       <div>
-        <label className="ter block mb-1" htmlFor="fb-body">
+        <label className={styles.label} htmlFor="fb-body">
           {type === 'bug' ? 'More detail' : 'Context'} (optional)
         </label>
         <textarea
@@ -92,17 +93,17 @@ export default function FeedbackForm({ githubRepo, defaultType = 'feature' }: Pr
           onChange={(e) => setBody(e.target.value)}
           placeholder={placeholders[type].body}
           rows={3}
-          className="field resize-none"
+          className={`${styles.field} ${styles.textarea}`}
         />
       </div>
 
-      <div className="flex items-center gap-[10px] flex-wrap">
-        <button type="submit" className="btn">Submit on GitHub ↗</button>
+      <div className={styles.actions}>
+        <button type="submit" className={`${styles.button} ${styles.primary}`}>Submit on GitHub ↗</button>
         <a
           href={title.trim() ? buildEmailHref() : undefined}
           onClick={!title.trim() ? (e) => e.preventDefault() : undefined}
-          className="btn btn-ghost"
-          style={{ opacity: title.trim() ? 1 : 0.45, cursor: title.trim() ? 'pointer' : 'default' }}
+          className={styles.button}
+          aria-disabled={!title.trim()}
         >
           Submit via email
         </a>
